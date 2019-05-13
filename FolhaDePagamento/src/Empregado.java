@@ -6,5 +6,5 @@ public class Empregado {
 	public int tipo;
 	public int metodoPagamento;
 	public int sindicato;
-	
+	public double salario;
 }
