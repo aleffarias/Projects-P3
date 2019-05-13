@@ -87,6 +87,15 @@ public class Main {
 				System.out.println("Funcionário cadastrado com sucesso!\n");
 				numeroFuncionario++;
 				break;
+			
+			case 2:
+				// Imprimir todos os funcionários
+				
+				System.out.println("Digite o número do Funcionário:");
+				int aux = input.nextInt();
+				listaEmpregados.remove(aux);
+				numeroFuncionario--;
+				break;
 				}
 			}
 		
