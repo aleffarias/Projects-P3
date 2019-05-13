@@ -5,7 +5,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		int contador = 0, key = -1;
+		int numeroFuncionario = 00, numeroSindicato = 00, key = -1;
 		Scanner input = new Scanner(System.in);
 		
 		ArrayList<Empregado> listaEmpregados = new ArrayList<Empregado>();
@@ -34,7 +34,7 @@ public class Main {
 				Empregado perfil; 
 				perfil = new Empregado();
 				
-				perfil.codigo = contador;
+				perfil.numeroFuncionario = numeroFuncionario;
 				
 				System.out.println("Digite o nome do empregado:");
 				perfil.nome = input.nextLine();
@@ -42,10 +42,32 @@ public class Main {
 				System.out.println("Digite o endereço do empregado:");
 				perfil.endereco = input.nextLine();
 				
-				System.out.println("\n(1) Horista\n(2) - Assalariado\n(3) - Comissionado");
+				System.out.println("\n(1) - Horista\n(2) - Assalariado\n(3) - Comissionado");
 				perfil.tipo = input.nextInt();
 				
-				// Add atributos associados 
+					switch (perfil.tipo) {
+					case 1:
+						System.out.print("Informe o salário por hora trabalhada:\nR$ ");
+						perfil.salarioHorista = input.nextFloat();						
+						break;
+						
+					case 2:
+						System.out.print("Informe o salário fixo mensal:\nR$ ");
+						perfil.salarioFixo = input.nextFloat();						
+						break;
+						
+					case 3:
+						System.out.print("Informe o salário:\nR$ ");
+						perfil.salarioComissionado = input.nextFloat();
+						System.out.println("Informe o percentual de comissão:");
+						perfil.percentualComissao = input.nextFloat();
+						
+						break;
+					
+					default:
+						System.out.println("Opção Inválida.");
+						
+					} 
 				
 				System.out.println("\nMétodo de pagamento:\n(1) - Cheque pelos correios\n(2) - Cheque em mãos\n(3) - Depósito em conta bancária");
 				perfil.metodoPagamento = input.nextInt();
@@ -53,12 +75,21 @@ public class Main {
 				System.out.println("\nPertence ao sindicato?\n(1) - Sim\n(2) - Não");
 				perfil.sindicato = input.nextInt();
 				
+					if (perfil.sindicato == 1) {
+						perfil.numeroSindicato = numeroSindicato;
+						numeroSindicato++;
+					} else {
+						perfil.numeroSindicato = -1;
+					}
+				
 				
 				listaEmpregados.add(perfil);
-				contador++;
+				System.out.println("Funcionário cadastrado com sucesso!\n");
+				numeroFuncionario++;
 				break;
 				}
 			}
+		
 			System.out.println(listaEmpregados.get(0).nome);
 			input.close();
 	}
