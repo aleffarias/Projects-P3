@@ -4,7 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		int key = -1;
+		int key = -1, indice;
 		Scanner input = new Scanner(System.in);
 				
 		while (key != 0) {
@@ -27,15 +27,23 @@ public class Main {
 			
 			switch (key) {
 			case 1:
-				FuncoesEmpregado.adicionar();
+				Empregado.adicionar();
 				break;
 			
 			case 2:
-				FuncoesEmpregado.remover();
+				Empregado.remover();
 				break;
-				}
+				
+			case 3:
+				// Lista de empregados
+				System.out.println("Digite o código do empregado:");
+				indice = input.nextInt();
+				
+				Empregado.listaEmpregados.add(indice, element);
+				break;
 			}
 		
 			input.close();
+		}
 	}
 }
