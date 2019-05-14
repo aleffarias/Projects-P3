@@ -15,12 +15,5 @@ public class RegistroEmpregado {
 	public float salarioFixo;
 	public float salarioComissionado;
 	public float percentualComissao;
-	
-	// Cartão de ponto
-	public int horaEntrada;
-	public int horaSaida;
-	public int dia;
-	public int mes;
-	public int ano;
-	
+		
 }
