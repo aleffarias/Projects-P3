@@ -25,21 +25,25 @@ public class Empregado {
 		
 		System.out.println("\n(1) - Horista\n(2) - Assalariado\n(3) - Comissionado");
 		perfil.tipo = input.nextInt();
+
 		
 			switch (perfil.tipo) {
 			case 1:
 				System.out.print("Informe o salário por hora trabalhada:\nR$ ");
-				perfil.salarioHorista = input.nextFloat();						
+				perfil.salarioHorista = input.nextFloat();	
+
 				break;
 				
 			case 2:
 				System.out.print("Informe o salário fixo mensal:\nR$ ");
-				perfil.salarioFixo = input.nextFloat();						
+				perfil.salarioFixo = input.nextFloat();		
+
 				break;
 				
 			case 3:
 				System.out.print("Informe o salário:\nR$ ");
 				perfil.salarioComissionado = input.nextFloat();
+				input.nextLine();
 				System.out.println("Informe o percentual de comissão:\nExemplo: 1,5 - 0,6");
 				perfil.percentualComissao = input.nextFloat();
 				
@@ -73,15 +77,19 @@ public class Empregado {
 	public static void remover() {
 		// Imprimir todos os funcionários
 		
-		System.out.println("Digite o número do Funcionário:");
-		int aux = input.nextInt();
-		listaEmpregados.remove(aux);
-		numeroFuncionario--;
-		
-		// Teste
-		System.out.println(listaEmpregados.get(0).nome);
-		System.out.println(listaEmpregados.get(1).nome);
-		
+		if (listaEmpregados.isEmpty() == true) {
+			System.out.println("Lista de funcionário Vazia!");
+		} else {
+			System.out.println("Digite o número do Funcionário:");
+			int aux = input.nextInt();
+			listaEmpregados.remove(aux);
+			numeroFuncionario--;
+			
+			// Teste
+			System.out.println(listaEmpregados.get(0).nome);
+			System.out.println(listaEmpregados.get(1).nome);
+		}
+					
 	}
 	
 }
