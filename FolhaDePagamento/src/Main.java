@@ -4,11 +4,11 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		int key = -1, indice;
+		int key = -1;
 		Scanner input = new Scanner(System.in);
 				
 		while (key != 0) {
-						
+			
 			System.out.println("Escolha uma opção:");
 			System.out.println("(1) - Adicionar Empregado");
 			System.out.println("(2) - Remover Empregado");
@@ -22,8 +22,7 @@ public class Main {
 			System.out.println("(10) - Criação de Novas Agendas de Pagamento");
 			System.out.println("(0) - Sair");
 			
-			key = input.nextInt();	
-			//input.nextLine();
+			key = input.nextInt();
 			
 			switch (key) {
 			case 1:
@@ -35,15 +34,11 @@ public class Main {
 				break;
 				
 			case 3:
-				// Lista de empregados
-				System.out.println("Digite o código do empregado:");
-				indice = input.nextInt();
-				
-				Empregado.listaEmpregados.add(indice, element);
+				CartaoPonto.lancarCartaoPonto();
 				break;
 			}
 		
-			input.close();
 		}
+		input.close();
 	}
 }
