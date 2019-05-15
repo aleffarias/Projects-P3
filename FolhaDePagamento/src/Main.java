@@ -7,17 +7,22 @@ public class Main {
 		
 		int key = -1, numeroFuncionario = 0, numeroSindicato = 0;
 		
+		ArrayList<String[]> listaEmpregados = new ArrayList<String[]>();
+		ArrayList<int[]> listaCartaoPonto = new ArrayList<int[]>();
+		ArrayList<float[]> listaResultadoVenda = new ArrayList<float[]>();
+		
 		// 		  0      |  1	|  	  2	   |  3   |  	4		|	  5  	|  		6	  |		7	|	8
 		// N Funcionário | Nome | Endereço | Tipo | Metodo Pag. | Sindicato | N Sindicato | Salario | Taxa Comissão   
 		String[] registroEmpregado = new String[9];
 		
-		//	  0  	 |		1	|  2	 |  3  |  	4	|	  5  	|
-		//  		 |H Entrada | H Saida | dia | mes | ano    |
+		//	 	 0  	 |	  1		|   2	  |  3  |  	4  |   5  	|
+		// N Funcionário |H Entrada | H Saida | dia |  mes |  ano   |
 		int[] registroCartaoPonto = new int[6];
 		
-		ArrayList<String[]> listaEmpregados = new ArrayList<String[]>();
-		ArrayList<int[]> listaCartaoPonto = new ArrayList<int[]>();
-
+		//	 	 0  	 | 1  |  2	|  3  |   4   | 
+		// N Funcionário |dia | mes | ano | valor |
+		float[] resultadoVenda = new float[5];
+		
 		Scanner input = new Scanner(System.in);
 				
 		while (key != 0) {
@@ -123,13 +128,13 @@ public class Main {
 				
 			case 3:
 				System.out.println("Digite o número do Funcionário:");
-				registroCartaoPonto[0] = input.nextInt(); // Número do funcionário não atualiza quando removido
+				registroCartaoPonto[0] = input.nextInt();
 				
-				System.out.println("Hora de entrada:\nExemplo: 1200 (12:00)");	// Mudar formato de entrada para 12:00
+				System.out.println("Horário Entrada:");
 				registroCartaoPonto[1] = input.nextInt();
 				
-				System.out.println("Hora de saida:");
-				registroCartaoPonto[21] = input.nextInt();
+				System.out.println("Horário Saída:");
+				registroCartaoPonto[2] = input.nextInt();
 				
 				System.out.println("Dia:");
 				registroCartaoPonto[3] = input.nextInt();
@@ -143,6 +148,28 @@ public class Main {
 				listaCartaoPonto.add(registroCartaoPonto);
 				
 				break;
+				
+			case 4:
+				System.out.println("Digite o número do Funcionário:");
+				resultadoVenda[0] = input.nextInt();
+				
+				System.out.println("Dia da venda:");
+				resultadoVenda[1] = input.nextInt();
+				
+				System.out.println("Mês da venda:");
+				resultadoVenda[2] = input.nextInt();
+				
+				System.out.println("Ano da venda:");
+				resultadoVenda[3] = input.nextInt();
+				
+				System.out.println("Valor da venda:");
+				resultadoVenda[4] = input.nextFloat();
+				
+				listaResultadoVenda.add(resultadoVenda);
+				System.out.println("\nResultado da venda registrado com sucesso!\n");
+			
+			case 5:
+				
 			}
 		
 			// Teste
