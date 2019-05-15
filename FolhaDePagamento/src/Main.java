@@ -11,7 +11,12 @@ public class Main {
 		// N Funcionário | Nome | Endereço | Tipo | Metodo Pag. | Sindicato | N Sindicato | Salario | Taxa Comissão   
 		String[] registroEmpregado = new String[9];
 		
+		//	  0  	 |		1	|  2	 |  3  |  	4	|	  5  	|
+		//  		 |H Entrada | H Saida | dia | mes | ano    |
+		int[] registroCartaoPonto = new int[6];
+		
 		ArrayList<String[]> listaEmpregados = new ArrayList<String[]>();
+		ArrayList<int[]> listaCartaoPonto = new ArrayList<int[]>();
 
 		Scanner input = new Scanner(System.in);
 				
@@ -96,7 +101,7 @@ public class Main {
 			
 			case 2:
 				if (listaEmpregados.isEmpty() == true) {
-					System.out.println("\nLista de funcionário Vazia!\n");
+					System.out.println("\nErro: Lista de funcionário Vazia.\n");
 					break;
 				} else {
 					System.out.println("Digite o número do Funcionário:");
@@ -104,9 +109,12 @@ public class Main {
 					
 					for (int i=0;i <= listaEmpregados.size();i++) {
 						if (Integer.parseInt(listaEmpregados.get(i)[0]) == aux) {
-							System.out.println("\nFuncionário: " + listaEmpregados.get(i)[1] + "está sendo removido...\n") ;
+							System.out.println("\nFuncionário: " + listaEmpregados.get(i)[1] + " está sendo removido...\n") ;
 							listaEmpregados.remove(i);
 							System.out.println("Funcionário removido com sucesso!\n");
+						} else {
+							System.out.println("Erro: Funcionário não existe.\n");
+							break;
 						}
 					}
 				}
@@ -114,7 +122,26 @@ public class Main {
 				break;
 				
 			case 3:
-				CartaoPonto.lancarCartaoPonto();
+				System.out.println("Digite o número do Funcionário:");
+				registroCartaoPonto[0] = input.nextInt(); // Número do funcionário não atualiza quando removido
+				
+				System.out.println("Hora de entrada:\nExemplo: 1200 (12:00)");	// Mudar formato de entrada para 12:00
+				registroCartaoPonto[1] = input.nextInt();
+				
+				System.out.println("Hora de saida:");
+				registroCartaoPonto[21] = input.nextInt();
+				
+				System.out.println("Dia:");
+				registroCartaoPonto[3] = input.nextInt();
+				
+				System.out.println("Mês:");
+				registroCartaoPonto[4] = input.nextInt();
+				
+				System.out.println("Ano:");
+				registroCartaoPonto[5] = input.nextInt();
+				
+				listaCartaoPonto.add(registroCartaoPonto);
+				
 				break;
 			}
 		
