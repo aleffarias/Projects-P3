@@ -10,6 +10,7 @@ public class Main {
 		ArrayList<String[]> listaEmpregados = new ArrayList<String[]>();
 		ArrayList<int[]> listaCartaoPonto = new ArrayList<int[]>();
 		ArrayList<float[]> listaResultadoVenda = new ArrayList<float[]>();
+		ArrayList<float[]> listaTaxaServico = new ArrayList<float[]>();
 		
 		// 		  0      |  1	|  	  2	   |  3   |  	4		|	  5  	|  		6	  |		7	|	8
 		// N Funcionário | Nome | Endereço | Tipo | Metodo Pag. | Sindicato | N Sindicato | Salario | Taxa Comissão   
@@ -22,6 +23,10 @@ public class Main {
 		//	 	 0  	 | 1  |  2	|  3  |   4   | 
 		// N Funcionário |dia | mes | ano | valor |
 		float[] resultadoVenda = new float[5];
+		
+		//	 	 0  	 | 1  |  2	|  3  |   4   | 
+		// N Funcionário |dia | mes | ano | taxa |
+		float[] taxaServico = new float[5];
 		
 		Scanner input = new Scanner(System.in);
 				
@@ -169,7 +174,23 @@ public class Main {
 				System.out.println("\nResultado da venda registrado com sucesso!\n");
 			
 			case 5:
+				System.out.println("Digite o número do Funcionário:");
+				taxaServico[0] = input.nextInt();
 				
+				System.out.printf("Dia do serviço:");
+				taxaServico[1] = input.nextInt();
+				
+				System.out.println("Mês do serviço:");
+				taxaServico[2] = input.nextInt();
+				
+				System.out.println("Ano do serviço:");
+				taxaServico[3] = input.nextInt();
+				
+				System.out.println("Valor da taxa de serviço:");
+				taxaServico[4] = input.nextFloat();
+				
+				listaTaxaServico.add(taxaServico);
+				System.out.println("\nTaxa de serviço registrada com sucesso!\n");
 			}
 		
 			// Teste
@@ -177,5 +198,9 @@ public class Main {
 			//System.out.println(listaEmpregados.get(0)[0]);
 		}
 		input.close();
+	}
+	
+	public static void salario() {
+		
 	}
 }
