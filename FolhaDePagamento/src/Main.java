@@ -1,16 +1,18 @@
 import java.util.ArrayList;
+//import java.util.GregorianCalendar;
+//import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class Main {
-
+	
+	static ArrayList<String[]> listaEmpregados = new ArrayList<String[]>();
+	static ArrayList<int[]> listaCartaoPonto = new ArrayList<int[]>();
+	static ArrayList<float[]> listaResultadoVenda = new ArrayList<float[]>();
+	static ArrayList<float[]> listaTaxaServico = new ArrayList<float[]>();
+	
 	public static void main(String[] args) {
 		
 		int key = -1, numeroFuncionario = 0, numeroSindicato = 0;
-		
-		ArrayList<String[]> listaEmpregados = new ArrayList<String[]>();
-		ArrayList<int[]> listaCartaoPonto = new ArrayList<int[]>();
-		ArrayList<float[]> listaResultadoVenda = new ArrayList<float[]>();
-		ArrayList<float[]> listaTaxaServico = new ArrayList<float[]>();
 		
 		// 		  0      |  1	|  	  2	   |  3   |  	4		|	  5  	|  		6	  |		7	|	8
 		// N Funcionário | Nome | Endereço | Tipo | Metodo Pag. | Sindicato | N Sindicato | Salario | Taxa Comissão   
@@ -50,6 +52,7 @@ public class Main {
 			
 			switch (key) {
 			case 1:
+				System.out.println("\n**  ADICIONAR FUNCIONÁRIO  **\n");
 				registroEmpregado[0] = Integer.toString(numeroFuncionario);
 				
 				System.out.println("Digite o nome do empregado:");
@@ -110,6 +113,7 @@ public class Main {
 				break;
 			
 			case 2:
+				System.out.println("\n**  REMOVER FUNCIONÁRIO  **\n");
 				if (listaEmpregados.isEmpty() == true) {
 					System.out.println("\nErro: Lista de funcionário Vazia.\n");
 					break;
@@ -132,6 +136,7 @@ public class Main {
 				break;
 				
 			case 3:
+				System.out.println("\n**  LANÇAR CARTÃO DE PONTO  **\n");
 				System.out.println("Digite o número do Funcionário:");
 				registroCartaoPonto[0] = input.nextInt();
 				
@@ -155,6 +160,7 @@ public class Main {
 				break;
 				
 			case 4:
+				System.out.println("\n**  LANÇAR RESULTADO DE VENDA  **\n");
 				System.out.println("Digite o número do Funcionário:");
 				resultadoVenda[0] = input.nextInt();
 				
@@ -174,6 +180,7 @@ public class Main {
 				System.out.println("\nResultado da venda registrado com sucesso!\n");
 			
 			case 5:
+				System.out.println("\n**  LANÇAR TAXA DE SERVIÇO  **\n");
 				System.out.println("Digite o número do Funcionário:");
 				taxaServico[0] = input.nextInt();
 				
@@ -200,7 +207,18 @@ public class Main {
 		input.close();
 	}
 	
-	public static void salario() {
+	public static void salarioHorista() {
+		for (int i=0;i <= listaEmpregados.size();i++) {
+			if (listaEmpregados.get(i)[3] == "1") {
+				for (int k=0 ;k <= listaCartaoPonto.size();i++) {
+					if (listaCartaoPonto.get(k)[0] == Integer.parseInt(listaEmpregados.get(i)[0])) {
+						// salario = (H saida - H entrada) *  salario hora
+					}
+				}
+			} else {
+				System.out.println("Erro: O Empregado não é horista.\n");
+			}
+		}
 		
 	}
 }
