@@ -45,6 +45,7 @@ public class Main {
 			switch (key) {
 			case 1:
 				System.out.println("\n**  ADICIONAR FUNCIONÁRIO  **\n");
+				empregado[numeroFuncionario][7] = "0";
 				empregado[numeroFuncionario][0] = Integer.toString(numeroFuncionario);
 				
 				System.out.println("Digite o nome do empregado:");
@@ -71,7 +72,7 @@ public class Main {
 						break;
 						
 					case 3:
-						System.out.print("Informe o salário:\nExemplo: 1500 - 3000.56\\nR$ ");
+						System.out.print("Informe o salário:\nExemplo: 1500 - 3000.56\nR$ ");
 						empregado[numeroFuncionario][7] = input.nextLine();
 						
 						System.out.println("Informe o percentual de comissão:\nExemplo: 1.5 - 0.6");
@@ -97,7 +98,6 @@ public class Main {
 						empregado[numeroFuncionario][6] = Integer.toString(-1);
 					}
 				
-				empregado[numeroFuncionario][7] = "0";
 					
 				System.out.println("\nFuncionário cadastrado com sucesso!\n");
 				numeroFuncionario++;
@@ -127,13 +127,15 @@ public class Main {
 				System.out.println("Horário Entrada:\nDigite sem ':' Exemplo: 0703(07:03) - 1256(12:56)");
 				int cartaoPontoE = input.nextInt();
 				
-				System.out.println("Horário Saída:");
+				System.out.println("Horário Saída:\nDigite sem ':' Exemplo: 0703(07:03) - 1256(12:56)");
 				int cartaoPontoS = input.nextInt();
 				
-				double salarioH = Double.parseDouble(empregado[nFunTemp][8]);
-				empregado[nFunTemp][7] = (Double.toString(Double.parseDouble(empregado[nFunTemp][7]) + (salarioHorista(salarioH, cartaoPontoE, cartaoPontoS))));
+				float salarioH = Float.parseFloat(empregado[nFunTemp][8]);
+				empregado[nFunTemp][7] = Double.toString(Double.parseDouble(empregado[nFunTemp][7]) + (salarioHorista(salarioH, cartaoPontoE, cartaoPontoS)));
 				
 				System.out.println("\nCartão de Ponto registrado com sucesso!\n");
+				
+				// Imprimir comprovante
 				
 				break;
 				
@@ -142,6 +144,8 @@ public class Main {
 				// Mostrar lista de funcionários
 				System.out.println("Digite o número do Funcionário:");
 				nFunTemp = input.nextInt();
+				
+				// Verificar se o funcionário é horista
 				
 				System.out.println("Dia da venda:");
 				int diaVenda = input.nextInt();
@@ -152,17 +156,23 @@ public class Main {
 				System.out.println("Ano da venda:");
 				int anoVenda = input.nextInt();
 				
-				System.out.println("Valor da venda:");
+				System.out.println("Valor da venda:\nExemplo: 1500 - 3000.56\n");
 				float valorVenda = input.nextFloat();
 				
-				
+				empregado[nFunTemp][7] = Double.toString(Double.parseDouble(empregado[nFunTemp][7]) + (valorVenda * ((Float.parseFloat(empregado[nFunTemp][9]) / 100))));
 				
 				System.out.println("\nResultado da venda registrado com sucesso!\n");
+				
+				// Imprimir comprovante
+				
+				break;
 			
 			case 5:
 				System.out.println("\n**  LANÇAR TAXA DE SERVIÇO  **\n");
 				System.out.println("Digite o número do Funcionário:");
 				taxaServico[0] = input.nextInt();
+				
+				// Verificar se o funcionário é comissionado
 				
 				System.out.printf("Dia do serviço:");
 				taxaServico[1] = input.nextInt();
