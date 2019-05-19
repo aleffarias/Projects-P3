@@ -14,10 +14,6 @@ public class Main {
 		
 		int key = -1, numeroFuncionario = 0, numeroSindicato = 0, nFunTemp;
 		
-		//
-		// N Funcionário |H Entrada | H Saida | dia |  mes |  ano   |
-		int[] registroCartaoPonto = new int[6];
-		
 		//	
 		// N Funcionário |dia | mes | ano | valor |
 		float[] resultadoVenda = new float[5];
@@ -63,22 +59,22 @@ public class Main {
 		
 					switch (Integer.parseInt(empregado[numeroFuncionario][3])) {
 					case 1:
-						System.out.print("Informe o salário por hora trabalhada:\nR$ ");
+						System.out.print("Informe o salário por hora trabalhada:\nExemplo: 1.5 - 3\nR$ ");
 						empregado[numeroFuncionario][8] = input.nextLine();	
 
 						break;
 						
 					case 2:
-						System.out.print("Informe o salário fixo mensal:\nR$ ");
+						System.out.print("Informe o salário fixo mensal:\nExemplo: 1500 - 3000.56\nR$ ");
 						empregado[numeroFuncionario][7] = input.nextLine();	
 
 						break;
 						
 					case 3:
-						System.out.print("Informe o salário:\nR$ ");
+						System.out.print("Informe o salário:\nExemplo: 1500 - 3000.56\\nR$ ");
 						empregado[numeroFuncionario][7] = input.nextLine();
 						
-						System.out.println("Informe o percentual de comissão:\nExemplo: 1,5 - 0,6");
+						System.out.println("Informe o percentual de comissão:\nExemplo: 1.5 - 0.6");
 						empregado[numeroFuncionario][9] = input.nextLine();
 						
 						break;
@@ -124,36 +120,42 @@ public class Main {
 				
 			case 3:
 				System.out.println("\n**  LANÇAR CARTÃO DE PONTO  **\n");
+				// Mostrar lista de funcionários
 				System.out.println("Digite o número do Funcionário:");
 				nFunTemp = input.nextInt();
 				
-				System.out.println("Horário Entrada:");
+				System.out.println("Horário Entrada:\nDigite sem ':' Exemplo: 0703(07:03) - 1256(12:56)");
 				int cartaoPontoE = input.nextInt();
 				
 				System.out.println("Horário Saída:");
 				int cartaoPontoS = input.nextInt();
 				
-				float salarioH = Float.parseFloat(empregado[nFunTemp][8]);
-				empregado[nFunTemp][7] = (Float.toString(Float.parseFloat(empregado[nFunTemp][7]) + (salarioHorista(salarioH, cartaoPontoE, cartaoPontoS))));
+				double salarioH = Double.parseDouble(empregado[nFunTemp][8]);
+				empregado[nFunTemp][7] = (Double.toString(Double.parseDouble(empregado[nFunTemp][7]) + (salarioHorista(salarioH, cartaoPontoE, cartaoPontoS))));
+				
+				System.out.println("\nCartão de Ponto registrado com sucesso!\n");
 				
 				break;
 				
 			case 4:
 				System.out.println("\n**  LANÇAR RESULTADO DE VENDA  **\n");
+				// Mostrar lista de funcionários
 				System.out.println("Digite o número do Funcionário:");
-				resultadoVenda[0] = input.nextInt();
+				nFunTemp = input.nextInt();
 				
 				System.out.println("Dia da venda:");
-				resultadoVenda[1] = input.nextInt();
+				int diaVenda = input.nextInt();
 				
 				System.out.println("Mês da venda:");
-				resultadoVenda[2] = input.nextInt();
+				int mesVenda = input.nextInt();
 				
 				System.out.println("Ano da venda:");
-				resultadoVenda[3] = input.nextInt();
+				int anoVenda = input.nextInt();
 				
 				System.out.println("Valor da venda:");
-				resultadoVenda[4] = input.nextFloat();
+				float valorVenda = input.nextFloat();
+				
+				
 				
 				System.out.println("\nResultado da venda registrado com sucesso!\n");
 			
@@ -183,19 +185,33 @@ public class Main {
 		input.close();
 	}
 	
-	public static float salarioHorista(float salarioHora, int entrada, int saida) {
-		float salario;
+	public static double salarioHorista(double salarioHora, int entrada, int saida) {
+		double salario;
 		
 		int horaTrabalhada = saida - entrada;
 		float minutos = horaTrabalhada % 100;
 		
-		if (minutos < 10) {
-			minutos = minutos / 10;
-		} else {
-			minutos = minutos / 100;
-		}
+		if (horaTrabalhada <= 800) {
 		
-		salario = ((horaTrabalhada / 100) * salarioHora) + (minutos * salarioHora);
+			if (minutos < 10) {
+				minutos = minutos / 10;
+			} else {
+				minutos = minutos / 100;
+			}
+			
+			salario = ((horaTrabalhada / 100) * salarioHora) + (minutos * salarioHora);
+		} else {
+			int horaExtra = horaTrabalhada - 800;
+			
+			if (minutos < 10) {
+				minutos = minutos / 10;
+			} else {
+				minutos = minutos / 100;
+			}
+			
+			salario = (8 * salarioHora + ((horaExtra / 100) * (salarioHora * 1.5)) + (minutos * (horaExtra * 1.5)));
+			
+		}
 		
 		return salario;
 	}
