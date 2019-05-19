@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 //import java.util.GregorianCalendar;
 //import java.text.SimpleDateFormat;
 import java.util.Scanner;
@@ -101,7 +100,9 @@ public class Main {
 					} else {
 						empregado[numeroFuncionario][6] = Integer.toString(-1);
 					}
-							
+				
+				empregado[numeroFuncionario][7] = "0";
+					
 				System.out.println("\nFuncionário cadastrado com sucesso!\n");
 				numeroFuncionario++;
 
@@ -133,7 +134,7 @@ public class Main {
 				int cartaoPontoS = input.nextInt();
 				
 				float salarioH = Float.parseFloat(empregado[nFunTemp][8]);
-				empregado[nFunTemp][7] = Float.toString(salarioHorista(salarioH, cartaoPontoE, cartaoPontoS));
+				empregado[nFunTemp][7] = (Float.toString(Float.parseFloat(empregado[nFunTemp][7]) + (salarioHorista(salarioH, cartaoPontoE, cartaoPontoS))));
 				
 				break;
 				
@@ -177,8 +178,7 @@ public class Main {
 			}
 		
 			// Teste
-			// .get(lista)[indice array]
-			//System.out.println(listaEmpregados.get(0)[0]);
+			System.out.println(empregado[0][7]);
 		}
 		input.close();
 	}
@@ -187,7 +187,15 @@ public class Main {
 		float salario;
 		
 		int horaTrabalhada = saida - entrada;
-		salario = ((horaTrabalhada / 100) * salarioHora) + (horaTrabalhada % 100) ;
+		float minutos = horaTrabalhada % 100;
+		
+		if (minutos < 10) {
+			minutos = minutos / 10;
+		} else {
+			minutos = minutos / 100;
+		}
+		
+		salario = ((horaTrabalhada / 100) * salarioHora) + (minutos * salarioHora);
 		
 		return salario;
 	}
