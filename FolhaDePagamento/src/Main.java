@@ -5,28 +5,25 @@ import java.util.Scanner;
 
 public class Main {
 	
-	static ArrayList<String[]> listaEmpregados = new ArrayList<String[]>();
-	static ArrayList<int[]> listaCartaoPonto = new ArrayList<int[]>();
-	static ArrayList<float[]> listaResultadoVenda = new ArrayList<float[]>();
-	static ArrayList<float[]> listaTaxaServico = new ArrayList<float[]>();
+//		0			1		2		3			4			5			6				7			8				9
+// N Funcionário | Nome | Endereço | Tipo | Metodo Pag. | Sindicato | N Sindicato | Salario | Salario Hora  | Taxa Comissão   
+	static int linha = 100, coluna = 10;
+	static String[][] empregado = new String[linha][coluna];
+	
 	
 	public static void main(String[] args) {
 		
-		int key = -1, numeroFuncionario = 0, numeroSindicato = 0;
+		int key = -1, numeroFuncionario = 0, numeroSindicato = 0, nFunTemp;
 		
-		// 		  0      |  1	|  	  2	   |  3   |  	4		|	  5  	|  		6	  |		7	|	8
-		// N Funcionário | Nome | Endereço | Tipo | Metodo Pag. | Sindicato | N Sindicato | Salario | Taxa Comissão   
-		String[] registroEmpregado = new String[9];
-		
-		//	 	 0  	 |	  1		|   2	  |  3  |  	4  |   5  	|
+		//
 		// N Funcionário |H Entrada | H Saida | dia |  mes |  ano   |
 		int[] registroCartaoPonto = new int[6];
 		
-		//	 	 0  	 | 1  |  2	|  3  |   4   | 
+		//	
 		// N Funcionário |dia | mes | ano | valor |
 		float[] resultadoVenda = new float[5];
 		
-		//	 	 0  	 | 1  |  2	|  3  |   4   | 
+		//
 		// N Funcionário |dia | mes | ano | taxa |
 		float[] taxaServico = new float[5];
 		
@@ -53,37 +50,37 @@ public class Main {
 			switch (key) {
 			case 1:
 				System.out.println("\n**  ADICIONAR FUNCIONÁRIO  **\n");
-				registroEmpregado[0] = Integer.toString(numeroFuncionario);
+				empregado[numeroFuncionario][0] = Integer.toString(numeroFuncionario);
 				
 				System.out.println("Digite o nome do empregado:");
-				registroEmpregado[1] = input.nextLine();
+				empregado[numeroFuncionario][1] = input.nextLine();
 			
 				System.out.println("Digite o endereço do empregado:");
-				registroEmpregado[2] = input.nextLine();
+				empregado[numeroFuncionario][2] = input.nextLine();
 				
 				System.out.println("\n(1) - Horista\n(2) - Assalariado\n(3) - Comissionado");
-				registroEmpregado[3] = input.nextLine();
+				empregado[numeroFuncionario][3] = input.nextLine();
 
 		
-					switch (Integer.parseInt(registroEmpregado[3])) {
+					switch (Integer.parseInt(empregado[numeroFuncionario][3])) {
 					case 1:
 						System.out.print("Informe o salário por hora trabalhada:\nR$ ");
-						registroEmpregado[7] = input.nextLine();	
+						empregado[numeroFuncionario][8] = input.nextLine();	
 
 						break;
 						
 					case 2:
 						System.out.print("Informe o salário fixo mensal:\nR$ ");
-						registroEmpregado[7] = input.nextLine();	
+						empregado[numeroFuncionario][7] = input.nextLine();	
 
 						break;
 						
 					case 3:
 						System.out.print("Informe o salário:\nR$ ");
-						registroEmpregado[7] = input.nextLine();
+						empregado[numeroFuncionario][7] = input.nextLine();
 						
 						System.out.println("Informe o percentual de comissão:\nExemplo: 1,5 - 0,6");
-						registroEmpregado[8] = input.nextLine();
+						empregado[numeroFuncionario][9] = input.nextLine();
 						
 						break;
 					
@@ -93,20 +90,18 @@ public class Main {
 					} 
 				
 				System.out.println("\nMétodo de pagamento:\n(1) - Cheque pelos correios\n(2) - Cheque em mãos\n(3) - Depósito em conta bancária");
-				registroEmpregado[4] = input.nextLine();
+				empregado[numeroFuncionario][4] = input.nextLine();
 				
 				System.out.println("\nPertence ao sindicato?\n(s) - Sim\n(n) - Não");
-				registroEmpregado[5] = input.nextLine();
+				empregado[numeroFuncionario][5] = input.nextLine();
 				
-					if (registroEmpregado[5] == "s" || registroEmpregado[5] == "S") {
-						registroEmpregado[6] = Integer.toString(numeroSindicato);
+					if (empregado[numeroFuncionario][5] == "s" || empregado[numeroFuncionario][5] == "S") {
+						empregado[numeroFuncionario][6] = Integer.toString(numeroSindicato);
 						numeroSindicato++;
 					} else {
-						registroEmpregado[6] = Integer.toString(-1);
+						empregado[numeroFuncionario][6] = Integer.toString(-1);
 					}
-				
-				listaEmpregados.add(registroEmpregado);
-				
+							
 				System.out.println("\nFuncionário cadastrado com sucesso!\n");
 				numeroFuncionario++;
 
@@ -114,48 +109,31 @@ public class Main {
 			
 			case 2:
 				System.out.println("\n**  REMOVER FUNCIONÁRIO  **\n");
-				if (listaEmpregados.isEmpty() == true) {
-					System.out.println("\nErro: Lista de funcionário Vazia.\n");
-					break;
-				} else {
-					System.out.println("Digite o número do Funcionário:");
-					int aux = input.nextInt();
-					
-					for (int i=0;i <= listaEmpregados.size();i++) {
-						if (Integer.parseInt(listaEmpregados.get(i)[0]) == aux) {
-							System.out.println("\nFuncionário: " + listaEmpregados.get(i)[1] + " está sendo removido...\n") ;
-							listaEmpregados.remove(i);
-							System.out.println("Funcionário removido com sucesso!\n");
-						} else {
-							System.out.println("Erro: Funcionário não existe.\n");
-							break;
-						}
-					}
+				// Mostrar lista de funcionários
+				System.out.println("Digite o número do Funcionário:");
+				nFunTemp = input.nextInt();
+				
+				System.out.println("Removendo funcionário...");
+				for (int i=0;i <= coluna;i++) {
+					empregado[nFunTemp][i] = null; 
 				}
 				
+				System.out.println("Funcionário removido com sucesso!");
 				break;
 				
 			case 3:
 				System.out.println("\n**  LANÇAR CARTÃO DE PONTO  **\n");
 				System.out.println("Digite o número do Funcionário:");
-				registroCartaoPonto[0] = input.nextInt();
+				nFunTemp = input.nextInt();
 				
 				System.out.println("Horário Entrada:");
-				registroCartaoPonto[1] = input.nextInt();
+				int cartaoPontoE = input.nextInt();
 				
 				System.out.println("Horário Saída:");
-				registroCartaoPonto[2] = input.nextInt();
+				int cartaoPontoS = input.nextInt();
 				
-				System.out.println("Dia:");
-				registroCartaoPonto[3] = input.nextInt();
-				
-				System.out.println("Mês:");
-				registroCartaoPonto[4] = input.nextInt();
-				
-				System.out.println("Ano:");
-				registroCartaoPonto[5] = input.nextInt();
-				
-				listaCartaoPonto.add(registroCartaoPonto);
+				float salarioH = Float.parseFloat(empregado[nFunTemp][8]);
+				empregado[nFunTemp][7] = salarioHorista(salarioH, cartaoPontoE, cartaoPontoS);
 				
 				break;
 				
@@ -176,7 +154,6 @@ public class Main {
 				System.out.println("Valor da venda:");
 				resultadoVenda[4] = input.nextFloat();
 				
-				listaResultadoVenda.add(resultadoVenda);
 				System.out.println("\nResultado da venda registrado com sucesso!\n");
 			
 			case 5:
@@ -196,7 +173,6 @@ public class Main {
 				System.out.println("Valor da taxa de serviço:");
 				taxaServico[4] = input.nextFloat();
 				
-				listaTaxaServico.add(taxaServico);
 				System.out.println("\nTaxa de serviço registrada com sucesso!\n");
 			}
 		
@@ -207,18 +183,11 @@ public class Main {
 		input.close();
 	}
 	
-	public static void salarioHorista() {
-		for (int i=0;i <= listaEmpregados.size();i++) {
-			if (listaEmpregados.get(i)[3] == "1") {
-				for (int k=0 ;k <= listaCartaoPonto.size();i++) {
-					if (listaCartaoPonto.get(k)[0] == Integer.parseInt(listaEmpregados.get(i)[0])) {
-						// salario = (H saida - H entrada) *  salario hora
-					}
-				}
-			} else {
-				System.out.println("Erro: O Empregado não é horista.\n");
-			}
-		}
+	public static float salarioHorista(float salarioHora, int entrada, int saida) {
+		float salario;
 		
+		salario = (saida - entrada) * salarioHora;
+		
+		return salario;
 	}
 }
