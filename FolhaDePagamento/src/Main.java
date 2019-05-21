@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 	
-//		0			1		2		3			4			5			6				7			8				9
+//        0          1       2         3         4            5             6          7           8                  9
 // N Funcionário | Nome | Endereço | Tipo | Metodo Pag. | Sindicato | N Sindicato | Salario | Salario Hora  | Taxa Comissão   
 	static int linha = 100, coluna = 10;
 	static String[][] empregado = new String[linha][coluna];
@@ -13,10 +13,7 @@ public class Main {
 	public static void main(String[] args) {
 		
 		int key = -1, numeroFuncionario = 0, numeroSindicato = 0, nFunTemp;
-		
-		//	
-		// N Funcionário |dia | mes | ano | valor |
-		float[] resultadoVenda = new float[5];
+
 		
 		//
 		// N Funcionário |dia | mes | ano | taxa |
@@ -124,6 +121,8 @@ public class Main {
 				System.out.println("Digite o número do Funcionário:");
 				nFunTemp = input.nextInt();
 				
+				// Verificar se o funcionário é horista
+				
 				System.out.println("Horário Entrada:\nDigite sem ':' Exemplo: 0703(07:03) - 1256(12:56)");
 				int cartaoPontoE = input.nextInt();
 				
@@ -145,7 +144,7 @@ public class Main {
 				System.out.println("Digite o número do Funcionário:");
 				nFunTemp = input.nextInt();
 				
-				// Verificar se o funcionário é horista
+				// Verificar se o funcionário é comissionado
 				
 				System.out.println("Dia da venda:");
 				int diaVenda = input.nextInt();
@@ -170,23 +169,19 @@ public class Main {
 			case 5:
 				System.out.println("\n**  LANÇAR TAXA DE SERVIÇO  **\n");
 				System.out.println("Digite o número do Funcionário:");
-				taxaServico[0] = input.nextInt();
+				nFunTemp = input.nextInt();
 				
-				// Verificar se o funcionário é comissionado
+				// Verificar se o funcionário é do sindicato
 				
-				System.out.printf("Dia do serviço:");
-				taxaServico[1] = input.nextInt();
-				
-				System.out.println("Mês do serviço:");
-				taxaServico[2] = input.nextInt();
-				
-				System.out.println("Ano do serviço:");
-				taxaServico[3] = input.nextInt();
+				System.out.printf("Serviço prestado:");
+				String servicoPrestado = input.nextLine();
 				
 				System.out.println("Valor da taxa de serviço:");
-				taxaServico[4] = input.nextFloat();
+				float valorServico = input.nextFloat();
 				
 				System.out.println("\nTaxa de serviço registrada com sucesso!\n");
+				
+				// Imprimir comprovante
 			}
 		
 			// Teste
