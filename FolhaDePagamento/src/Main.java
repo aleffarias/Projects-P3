@@ -101,23 +101,25 @@ public class Main {
 
 				break;
 			
-			case 2:
-				System.out.println("\n**  REMOVER FUNCIONÁRIO  **\n");
-				// Mostrar lista de funcionários
+			case 2:	
+				todosEmpregados(); // Mostrar lista de funcionários
+				
+				System.out.println("\n\t**  REMOVER FUNCIONÁRIO  **\n");
 				System.out.println("Digite o número do Funcionário:");
 				nFunTemp = input.nextInt();
 				
 				System.out.println("Removendo funcionário...");
-				for (int i=0;i <= coluna;i++) {
+				for (int i=0;i < coluna;i++) {
 					empregado[nFunTemp][i] = null; 
 				}
 				
-				System.out.println("Funcionário removido com sucesso!");
+				System.out.println("Funcionário removido com sucesso!\n");
 				break;
 				
 			case 3:
-				System.out.println("\n**  LANÇAR CARTÃO DE PONTO  **\n");
-				// Mostrar lista de funcionários
+				todosEmpregados(); // Mostrar lista de funcionários
+				
+				System.out.println("\n**  LANÇAR CARTÃO DE PONTO  **\n");		
 				System.out.println("Digite o número do Funcionário:");
 				nFunTemp = input.nextInt();
 				
@@ -142,8 +144,9 @@ public class Main {
 				break;
 				
 			case 4:
+				todosEmpregados();// Mostrar lista de funcionários
+				
 				System.out.println("\n**  LANÇAR RESULTADO DE VENDA  **\n");
-				// Mostrar lista de funcionários
 				System.out.println("Digite o número do Funcionário:");
 				nFunTemp = input.nextInt();
 				
@@ -198,6 +201,44 @@ public class Main {
 			System.out.println(empregado[0][7]);
 		}
 		input.close();
+	}
+	
+	public static void todosEmpregados () {
+		System.out.println("\n*****			LISTA DE EMPREGADOS			*****\n");
+		String tipo = "";
+		String metPagamento = "";
+		
+		for (int i=0; i < linha ;i++) {
+			if (empregado[i][0] != null) {
+				System.out.println("\n==============================================================");
+				System.out.printf("Número do empregado: %s\tNome: %s\n", empregado[i][0], empregado[i][1]);
+				System.out.println("-------------------------------------------------");
+				System.out.printf("Endereço: %s\n", empregado[i][2]);
+				System.out.println("-------------------------------------------------");
+				
+				if (Integer.parseInt(empregado[i][3]) == 1) {
+					System.out.println("Entrou");
+					tipo = "Horista";
+				} else if (Integer.parseInt(empregado[i][3]) == 2){
+					tipo = "Assalariado";
+				} else if (Integer.parseInt(empregado[i][3]) == 3) {
+					tipo = "Comissionado";
+				}
+				
+				if (Integer.parseInt(empregado[i][4]) == 1) {
+					metPagamento = "Cheque pelos correios";
+				} else if (Integer.parseInt(empregado[i][4]) == 2) {
+					metPagamento = "Cheque em mãos";
+				} else if (Integer.parseInt(empregado[i][4]) == 3) {
+					metPagamento = "Depósito em conta bancária";
+				}
+				
+				System.out.printf("Tipo: %s\tMétodo de pagamento: %s\n", tipo, metPagamento);
+				System.out.println("-------------------------------------------------");
+				System.out.printf("Número do sindicato: %s\n", empregado[i][6]);
+				System.out.println("==============================================================");
+			}
+		}
 	}
 	
 	public static double salarioHorista(double salarioHora, int entrada, int saida) {
