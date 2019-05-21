@@ -121,21 +121,24 @@ public class Main {
 				System.out.println("Digite o número do Funcionário:");
 				nFunTemp = input.nextInt();
 				
-				// Verificar se o funcionário é horista
+				if ((Integer.parseInt(empregado[nFunTemp][3])) == 1) { // Verifica se o funcionário é horista
 				
-				System.out.println("Horário Entrada:\nDigite sem ':' Exemplo: 0703(07:03) - 1256(12:56)");
-				int cartaoPontoE = input.nextInt();
-				
-				System.out.println("Horário Saída:\nDigite sem ':' Exemplo: 0703(07:03) - 1256(12:56)");
-				int cartaoPontoS = input.nextInt();
-				
-				float salarioH = Float.parseFloat(empregado[nFunTemp][8]);
-				empregado[nFunTemp][7] = Double.toString(Double.parseDouble(empregado[nFunTemp][7]) + (salarioHorista(salarioH, cartaoPontoE, cartaoPontoS)));
-				
-				System.out.println("\nCartão de Ponto registrado com sucesso!\n");
-				
-				// Imprimir comprovante
-				
+					System.out.println("Horário Entrada:\nDigite sem ':' Exemplo: 0703(07:03) - 1256(12:56)");
+					int cartaoPontoE = input.nextInt();
+					
+					System.out.println("Horário Saída:\nDigite sem ':' Exemplo: 0703(07:03) - 1256(12:56)");
+					int cartaoPontoS = input.nextInt();
+					
+					float salarioH = Float.parseFloat(empregado[nFunTemp][8]);
+					empregado[nFunTemp][7] = Double.toString(Double.parseDouble(empregado[nFunTemp][7]) + (salarioHorista(salarioH, cartaoPontoE, cartaoPontoS)));
+					
+					System.out.println("\nCartão de Ponto registrado com sucesso!\n");
+					
+					// Imprimir comprovante
+				} else {
+					System.out.println("Erro: Funcionário não é horista.\n");
+				}
+					
 				break;
 				
 			case 4:
@@ -144,25 +147,28 @@ public class Main {
 				System.out.println("Digite o número do Funcionário:");
 				nFunTemp = input.nextInt();
 				
-				// Verificar se o funcionário é comissionado
-				
-				System.out.println("Dia da venda:");
-				int diaVenda = input.nextInt();
-				
-				System.out.println("Mês da venda:");
-				int mesVenda = input.nextInt();
-				
-				System.out.println("Ano da venda:");
-				int anoVenda = input.nextInt();
-				
-				System.out.println("Valor da venda:\nExemplo: 1500 - 3000.56\n");
-				float valorVenda = input.nextFloat();
-				
-				empregado[nFunTemp][7] = Double.toString(Double.parseDouble(empregado[nFunTemp][7]) + (valorVenda * ((Float.parseFloat(empregado[nFunTemp][9]) / 100))));
-				
-				System.out.println("\nResultado da venda registrado com sucesso!\n");
-				
-				// Imprimir comprovante
+				if ((Integer.parseInt(empregado[nFunTemp][3])) == 3) { // Verificar se o funcionário é comissionado
+					
+					System.out.println("Dia da venda:");
+					int diaVenda = input.nextInt();
+					
+					System.out.println("Mês da venda:");
+					int mesVenda = input.nextInt();
+					
+					System.out.println("Ano da venda:");
+					int anoVenda = input.nextInt();
+					
+					System.out.println("Valor da venda:\nExemplo: 1500 - 3000.56\n");
+					float valorVenda = input.nextFloat();
+					
+					empregado[nFunTemp][7] = Double.toString(Double.parseDouble(empregado[nFunTemp][7]) + (valorVenda * ((Float.parseFloat(empregado[nFunTemp][9]) / 100))));
+					
+					System.out.println("\nResultado da venda registrado com sucesso!\n");
+					
+					// Imprimir comprovante
+				} else {
+					System.out.println("Erro: Funcionário não é comissionado.\n");
+				}
 				
 				break;
 			
@@ -171,17 +177,21 @@ public class Main {
 				System.out.println("Digite o número do Funcionário:");
 				nFunTemp = input.nextInt();
 				
-				// Verificar se o funcionário é do sindicato
+				if (((empregado[nFunTemp][5]) == "s") || ((empregado[nFunTemp][5]) == "S")) { // Verificar se o funcionário é do sindicato
+
+					System.out.printf("Serviço prestado:");
+					String servicoPrestado = input.nextLine();
+					
+					System.out.println("Valor da taxa de serviço:");
+					float valorServico = input.nextFloat();
+					
+					System.out.println("\nTaxa de serviço registrada com sucesso!\n");
+					
+					// Imprimir comprovante
+				} else {
+					System.out.println("Erro: Funcionário não pertence ao sindicato.\n");
+				}
 				
-				System.out.printf("Serviço prestado:");
-				String servicoPrestado = input.nextLine();
-				
-				System.out.println("Valor da taxa de serviço:");
-				float valorServico = input.nextFloat();
-				
-				System.out.println("\nTaxa de serviço registrada com sucesso!\n");
-				
-				// Imprimir comprovante
 			}
 		
 			// Teste
