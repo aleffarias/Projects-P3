@@ -81,13 +81,13 @@ public class Main {
 				System.out.println("\nMétodo de pagamento:\n(1) - Cheque pelos correios\n(2) - Cheque em mãos\n(3) - Depósito em conta bancária");
 				empregado[numeroFuncionario][4] = input.nextLine();
 				
-				System.out.println("\nPertence ao sindicato?\n(s) - Sim\n(n) - Não");
+				System.out.println("\nPertence ao sindicato?\n(1) - Sim\n(0) - Não");
 				empregado[numeroFuncionario][5] = input.nextLine();
 				
-					if (empregado[numeroFuncionario][5] == "s" || empregado[numeroFuncionario][5] == "S") {
+					if (Integer.parseInt(empregado[numeroFuncionario][5]) == 1) {
 						empregado[numeroFuncionario][6] = Integer.toString(numeroSindicato);
 						
-						System.out.println("Digite o valor da taxa sindical:");
+						System.out.print("Digite o valor da taxa sindical:\nR$ ");
 						empregado[numeroFuncionario][10] = input.nextLine();
 						
 						numeroSindicato++;
@@ -280,14 +280,14 @@ public class Main {
 						break;
 						
 					case 5:
-						System.out.println("\nPertence ao sindicato?\n(s) - Sim\n(n) - Não");
+						System.out.println("\nPertence ao sindicato?\n(1) - Sim\n(0) - Não");
 						empregado[nFunTemp][5] = input.nextLine();
 						
-							if (empregado[nFunTemp][5] == "s" || empregado[nFunTemp][5] == "S") {
+							if (Integer.parseInt(empregado[nFunTemp][5]) == 1) {
 																
 								empregado[nFunTemp][6] = Integer.toString(numeroSindicato);
 								
-								System.out.println("Digite o valor da taxa sindical:");
+								System.out.print("Digite o valor da taxa sindical:\nR$");
 								empregado[nFunTemp][10] = input.nextLine();
 								
 								numeroSindicato++;
@@ -306,6 +306,25 @@ public class Main {
 				}
 				
 				break;
+			case 7:
+				System.out.println("\n**  	RODAR A FOLHA DE PAGAMENTO  	**\n");
+				
+				break;
+			
+			case 8:
+				System.out.println("\n**  	UNDU/REDO  	**\n");
+				
+				break;
+			
+			case 9:
+				System.out.println("\n**  	AGENDA DE PAGAMENTO 	**\n");
+				
+				break;
+			
+			case 10:
+				System.out.println("\n**  	CRIAR AGENDA DE PAGAMENTO 	**\n");
+				
+				break;
 				
 			case 11:
 				todosEmpregados();
@@ -321,44 +340,6 @@ public class Main {
 			System.out.println(empregado[0][7]);
 		}
 		input.close();
-	}
-	
-	public static void todosEmpregados () {
-		System.out.println("\n*****			LISTA DE EMPREGADOS			*****\n");
-		String tipo = "";
-		String metPagamento = "";
-		
-		for (int i=0; i < linha ;i++) {
-			if (empregado[i][0] != null) {
-				System.out.println("\n========================================================================");
-				System.out.printf("Número do empregado: %s\tNome: %s\n", empregado[i][0], empregado[i][1]);
-				System.out.println("-------------------------------------------------");
-				System.out.printf("Endereço: %s\n", empregado[i][2]);
-				System.out.println("-------------------------------------------------");
-				
-				if (Integer.parseInt(empregado[i][3]) == 1) {
-					System.out.println("Entrou");
-					tipo = "Horista";
-				} else if (Integer.parseInt(empregado[i][3]) == 2){
-					tipo = "Assalariado";
-				} else if (Integer.parseInt(empregado[i][3]) == 3) {
-					tipo = "Comissionado";
-				}
-				
-				if (Integer.parseInt(empregado[i][4]) == 1) {
-					metPagamento = "Cheque pelos correios";
-				} else if (Integer.parseInt(empregado[i][4]) == 2) {
-					metPagamento = "Cheque em mãos";
-				} else if (Integer.parseInt(empregado[i][4]) == 3) {
-					metPagamento = "Depósito em conta bancária";
-				}
-				
-				System.out.printf("Tipo: %s\tMétodo de pagamento: %s\n", tipo, metPagamento);
-				System.out.println("-------------------------------------------------");
-				System.out.printf("Número do sindicato: %s\n", empregado[i][6]);
-				System.out.println("========================================================================");
-			}
-		}
 	}
 	
 	public static double salarioHorista(double salarioHora, int entrada, int saida) {
@@ -390,5 +371,55 @@ public class Main {
 		}
 		
 		return salario;
+	}
+	
+	public static void todosEmpregados () {
+		System.out.println("\n*****			LISTA DE EMPREGADOS			*****\n");
+		String tipo = "";
+		String metPagamento = "";
+		String sindicato = "";
+		String salario = "";
+		
+		for (int i=0; i < linha ;i++) {
+			if (empregado[i][0] != null) {
+				System.out.println("\n==================================================================================");
+				System.out.printf("Número do empregado: %s\tNome: %s\n", empregado[i][0], empregado[i][1]);
+				System.out.println("--------------------------------------------------------------------------");
+				System.out.printf("Endereço: %s\n", empregado[i][2]);
+				System.out.println("--------------------------------------------------------------------------");
+				
+				if (Integer.parseInt(empregado[i][3]) == 1) {
+					tipo = "Horista";
+					salario = "Salário Hora: R$ " + Double.parseDouble(empregado[i][8]);
+				} else if (Integer.parseInt(empregado[i][3]) == 2){
+					tipo = "Assalariado";
+					salario = "Salário: R$ " + Double.parseDouble(empregado[i][7]);
+				} else if (Integer.parseInt(empregado[i][3]) == 3) {
+					tipo = "Comissionado";
+					salario = "Salário: R$ " + Double.parseDouble(empregado[i][7]) + "		Comissão: " + Double.parseDouble(empregado[i][9]) + "%";
+				}
+				
+				if (Integer.parseInt(empregado[i][4]) == 1) {
+					metPagamento = "Cheque pelos correios";
+				} else if (Integer.parseInt(empregado[i][4]) == 2) {
+					metPagamento = "Cheque em mãos";
+				} else if (Integer.parseInt(empregado[i][4]) == 3) {
+					metPagamento = "Depósito em conta bancária";
+				}
+				
+				if (Integer.parseInt(empregado[i][6]) == -1) {
+					sindicato = "Não Pertence";
+				} else {
+					sindicato = empregado[i][6] + "		Taxa Sindical: R$ " + Double.parseDouble(empregado[i][10]);
+				}
+								
+				System.out.printf("Tipo: %s		%s\n", tipo, salario);
+				System.out.println("--------------------------------------------------------------------------");
+				System.out.printf("Método de pagamento: %s\n", metPagamento);
+				System.out.println("--------------------------------------------------------------------------");
+				System.out.printf("Número do sindicato: %s\n", sindicato);
+				System.out.println("==================================================================================");
+			}
+		}
 	}
 }
