@@ -4,15 +4,16 @@ import java.util.Scanner;
 
 public class Main {
 	
-//        0          1       2         3         4            5             6          7           8                  9             10
-// N Funcionário | Nome | Endereço | Tipo | Metodo Pag. | Sindicato | N Sindicato | Salario | Salario Hora  | Taxa Comissão | Taxa Sindical
-	static int linha = 100, coluna = 11;
+//        0          1       2         3         4            5             6          7           8                  9             10            11
+// N Funcionário | Nome | Endereço | Tipo | Metodo Pag. | Sindicato | N Sindicato | Salario | Salario Hora  | Taxa Comissão | Taxa Sindical | Nova Agenda
+	static int linha = 100, coluna = 12;
 	static String[][] empregado = new String[linha][coluna];
 	
 	
 	public static void main(String[] args) {
 		
-		int key = -1, key1 = -1, numeroFuncionario = 1, numeroSindicato = 1, nFunTemp;
+		int key = -1, key1 = -1, numeroFuncionario = 1, numeroSindicato = 1, nFunTemp, opcao1, opcao2, opcao3;
+		String opcao;
 		
 		Scanner input = new Scanner(System.in);
 				
@@ -50,32 +51,27 @@ public class Main {
 				empregado[numeroFuncionario][3] = input.nextLine();
 
 		
-					switch (Integer.parseInt(empregado[numeroFuncionario][3])) {
-					case 1:
-						System.out.print("\nInforme o salário por hora trabalhada:\nExemplo: 1.5 - 3\nR$ ");
-						empregado[numeroFuncionario][8] = input.nextLine();	
-
-						break;
-						
-					case 2:
-						System.out.print("\nInforme o salário fixo mensal:\nExemplo: 1500 - 3000.56\nR$ ");
-						empregado[numeroFuncionario][7] = input.nextLine();	
-
-						break;
-						
-					case 3:
-						System.out.print("\nInforme o salário:\nExemplo: 1500 - 3000.56\nR$ ");
-						empregado[numeroFuncionario][7] = input.nextLine();
-						
-						System.out.println("\nInforme o percentual de comissão:\nExemplo: 1.5 - 0.6");
-						empregado[numeroFuncionario][9] = input.nextLine();
-						
-						break;
+				if (Integer.parseInt(empregado[numeroFuncionario][3]) == 1) {
 					
-					default:
-						System.out.println("Opção Inválida.");
-						
-					} 
+					System.out.print("\nInforme o salário por hora trabalhada:\nExemplo: 1.5 - 3\nR$ ");
+					empregado[numeroFuncionario][8] = input.nextLine();	
+
+				} else if (Integer.parseInt(empregado[numeroFuncionario][3]) == 2) {
+					
+					System.out.print("\nInforme o salário fixo mensal:\nExemplo: 1500 - 3000.56\nR$ ");
+					empregado[numeroFuncionario][7] = input.nextLine();	
+
+				} else if (Integer.parseInt(empregado[numeroFuncionario][3]) == 3) {
+					
+					System.out.print("\nInforme o salário:\nExemplo: 1500 - 3000.56\nR$ ");
+					empregado[numeroFuncionario][7] = input.nextLine();
+					
+					System.out.println("\nInforme o percentual de comissão:\nExemplo: 1.5 - 0.6");
+					empregado[numeroFuncionario][9] = input.nextLine();
+					
+				} else {
+					System.out.println("\nErro: Opção Inválida.\n");			
+				}
 				
 				System.out.println("\nMétodo de pagamento:\n(1) - Cheque pelos correios\n(2) - Cheque em mãos\n(3) - Depósito em conta bancária");
 				empregado[numeroFuncionario][4] = input.nextLine();
@@ -101,10 +97,10 @@ public class Main {
 				break;
 			
 			case 2:	
-				//todosEmpregados(); // Mostrar lista de funcionários
+				todosEmpregados(0);
 				
 				System.out.println("\n\t**  	REMOVER FUNCIONÁRIO  	**\n");
-				System.out.println("Digite o número do Empregado:");
+				System.out.println("Digite o número do Empregado:\n");
 				nFunTemp = input.nextInt();
 				
 				System.out.println("\nRemovendo empregado...");
@@ -115,9 +111,7 @@ public class Main {
 				System.out.println("\nEmpregado removido com sucesso!\n");
 				break;
 				
-			case 3:
-				//todosEmpregados(); // Mostrar lista de funcionários
-				
+			case 3:			
 				System.out.println("\n**  	LANÇAR CARTÃO DE PONTO  	**\n");		
 				System.out.println("Digite o número do Empregado:");
 				nFunTemp = input.nextInt();
@@ -143,9 +137,7 @@ public class Main {
 					
 				break;
 				
-			case 4:
-				//todosEmpregados();// Mostrar lista de funcionários
-				
+			case 4:	
 				System.out.println("\n**  	LANÇAR RESULTADO DE VENDA  		**\n");
 				System.out.println("Digite o número do Empregado:");
 				nFunTemp = input.nextInt();
@@ -177,8 +169,6 @@ public class Main {
 				break;
 			
 			case 5:
-				//todosEmpregados();
-				
 				System.out.println("\n**  	LANÇAR TAXA DE SERVIÇO  	**\n");
 				System.out.println("Digite o número do Empregado:");
 				nFunTemp = input.nextInt();
@@ -198,9 +188,7 @@ public class Main {
 				} else {
 					System.out.println("\nErro: Empregado não pertence ao sindicato.\n");
 				}
-			case 6:
-				//todosEmpregados();
-				
+			case 6:				
 				System.out.println("\n**  	ALTERAR DETALHES DO EMPREGADO  	**\n");
 				System.out.println("Digite o número do Funcionário:");
 				nFunTemp = input.nextInt();
@@ -239,33 +227,27 @@ public class Main {
 					case 3:
 						System.out.println("\nEscolha o tipo do empregado:\n(1) - Horista\n(2) - Assalariado\n(3) - Comissionado");
 						empregado[nFunTemp][3] = input.nextLine();
-
 				
-							switch (Integer.parseInt(empregado[numeroFuncionario][3])) {
-							case 1:
+							if (Integer.parseInt(empregado[nFunTemp][3]) == 1) {
+								
 								System.out.print("\nInforme o salário por hora trabalhada:\nExemplo: 1.5 - 3\nR$ ");
 								empregado[nFunTemp][8] = input.nextLine();	
 
-								break;
+							} else if (Integer.parseInt(empregado[nFunTemp][3]) == 2) {
 								
-							case 2:
 								System.out.print("\nInforme o salário fixo mensal:\nExemplo: 1500 - 3000.56\nR$ ");
 								empregado[nFunTemp][7] = input.nextLine();	
 
-								break;
+							} else if (Integer.parseInt(empregado[nFunTemp][3]) == 3) {
 								
-							case 3:
 								System.out.print("\nInforme o salário:\nExemplo: 1500 - 3000.56\nR$ ");
 								empregado[nFunTemp][7] = input.nextLine();
 								
 								System.out.println("\nInforme o percentual de comissão:\nExemplo: 1.5 - 0.6");
 								empregado[nFunTemp][9] = input.nextLine();
 								
-								break;
-							
-							default:
-								System.out.println("\nErro: Opção Inválida.\n");
-								
+							} else {
+								System.out.println("\nErro: Opção Inválida.\n");			
 							}
 						
 							System.out.println("\nTipo do empregado alterado com sucesso!\n");
@@ -329,15 +311,50 @@ public class Main {
 				System.out.println("\nEMPREGADOS PAGOS MENSALMENTE");			
 				todosEmpregados(2);
 				
+				System.out.println("\nNOVA AGENDA: MENSAL");			
+				todosEmpregados(4);
+				
+				System.out.println("\nNOVA AGENDA: SEMANAL");			
+				todosEmpregados(5);
+				
 				break;
 			
 			case 10:
-				System.out.println("\n**  	CRIAR AGENDA DE PAGAMENTO 	**\n");
+				System.out.println("\n**  	CRIAR AGENDA DE PAGAMENTO 	**\n");	// Incompleto
+				
+				System.out.println("Digite o número do Funcionário:");
+				nFunTemp = input.nextInt();
+				
+				System.out.println("\nEscolha uma opção:\n(1) - Mensal\n(2) - Semanal");
+				opcao1 = input.nextInt();
+				input.nextLine();
+				
+				if (opcao1 == 1) {
+					System.out.println("\nEscolha o dia ou digite $ para o último dia do mês");
+					opcao = input.nextLine();
+					
+					empregado[nFunTemp][10] = "4";	// Tipo 4: Empregados pagos mensalmete no dia 'opcao'
+					
+				} else if (opcao1 == 2) {
+					System.out.println("\nEscolha a frequencia:\n1 - Toda semana\n2 - A cada duas semanas\n3 - A cada três semanas\n...");
+					opcao2 = input.nextInt();
+					input.nextLine();
+					
+					System.out.println("\nEscolha o dia da semana:\n1 - Segunda\n2 - Terça\n3 - Quarta\n4 - Quinta\n5 - Sexta");
+					opcao3 = input.nextInt();
+					input.nextLine();
+					
+					empregado[nFunTemp][10] = "5";	// Tipo 5: Empregados pagos 'opcao2' semanalmente no dia 'opcao3'
+					
+				} else {
+					System.out.println("\nErro: Opção Inváida.\n");
+				}
 				
 				break;
 							
 			case 0:
 				System.exit(0);
+				
 			default:
 				System.out.println("\nErro: Opção Inválida.\n");
 			}
@@ -388,9 +405,9 @@ public class Main {
 		
 		for (int i=0; i < linha ;i++) {
 			if (empregado[i][0] != null) {
-				if (Integer.parseInt(empregado[i][3]) == tipoEmpregado) {
+				if ((Integer.parseInt(empregado[i][3]) == tipoEmpregado) || tipoEmpregado == 0){
 					System.out.println("==================================================================================");
-					System.out.printf("Número do empregado: %s\tNome: %s\n", empregado[i][0], empregado[i][1]);
+					System.out.printf("Número do empregado: %s		Nome: %s\n", empregado[i][0], empregado[i][1]);
 					System.out.println("--------------------------------------------------------------------------");
 					System.out.printf("Endereço: %s\n", empregado[i][2]);
 					System.out.println("--------------------------------------------------------------------------");
@@ -403,7 +420,7 @@ public class Main {
 						salario = "Salário: R$ " + Double.parseDouble(empregado[i][7]);
 					} else if (Integer.parseInt(empregado[i][3]) == 3) {
 						tipo = "Comissionado";
-						salario = "Salário: R$ " + Double.parseDouble(empregado[i][7]) + "		Comissão: " + Double.parseDouble(empregado[i][9]) + "%";
+						salario = "Salário: R$ " + Double.parseDouble(empregado[i][7]) + "		Comissão: " + Double.parseDouble(empregado[i][9]) + " %";
 					}
 					
 					if (Integer.parseInt(empregado[i][4]) == 1) {
@@ -426,11 +443,11 @@ public class Main {
 					System.out.println("--------------------------------------------------------------------------");
 					System.out.printf("Número do sindicato: %s\n", sindicato);
 					System.out.println("==================================================================================\n");
-				} else {
+				} /*else {
 					System.out.println("==================================================================================");
 					System.out.println("Nenhum Empregado registrado");
 					System.out.println("==================================================================================\n");
-				}
+				}*/
 			}
 		}
 	}
