@@ -6,7 +6,7 @@ public class Main {
 	
 //        0          1       2         3         4            5             6          7           8                  9             10            11        12
 // N Funcionário | Nome | Endereço | Tipo | Metodo Pag. | Sindicato | N Sindicato | Salario | Salario Hora  | Taxa Comissão | Taxa Sindical |   Agenda | Nova Agenda
-	static int linha = 100, coluna = 12;
+	static int linha = 100, coluna = 13;
 	static String[][] empregado = new String[linha][coluna];
 	
 	
@@ -51,19 +51,22 @@ public class Main {
 				empregado[numeroFuncionario][3] = input.nextLine();
 
 					if (Integer.parseInt(empregado[numeroFuncionario][3]) == 1) {
-						empregado[numeroFuncionario][10] = "1"; // Semanalmente
+						empregado[numeroFuncionario][11] = "1"; // Semanalmente
+						empregado[numeroFuncionario][12] = "Padrão - Semanal";
 						
 						System.out.print("\nInforme o salário por hora trabalhada:\nExemplo: 1.5 - 3\nR$ ");
 						empregado[numeroFuncionario][8] = input.nextLine();
 	
 					} else if (Integer.parseInt(empregado[numeroFuncionario][3]) == 2) {
-						empregado[numeroFuncionario][10] = "2"; // Mensalmente
+						empregado[numeroFuncionario][11] = "2"; // Mensalmente
+						empregado[numeroFuncionario][12] = "Padrão - Mensal";
 						
 						System.out.print("\nInforme o salário fixo mensal:\nExemplo: 1500 - 3000.56\nR$ ");
 						empregado[numeroFuncionario][7] = input.nextLine();	
 	
 					} else if (Integer.parseInt(empregado[numeroFuncionario][3]) == 3) {
-						empregado[numeroFuncionario][10] = "3"; // Bi-semanalmente
+						empregado[numeroFuncionario][11] = "3"; // Bi-semanalmente
+						empregado[numeroFuncionario][12] = "Padrão - Bi-semanal";
 						
 						System.out.print("\nInforme o salário:\nExemplo: 1500 - 3000.56\nR$ ");
 						empregado[numeroFuncionario][7] = input.nextLine();
@@ -234,13 +237,13 @@ public class Main {
 								
 								System.out.print("\nInforme o salário por hora trabalhada:\nExemplo: 1.5 - 3\nR$ ");
 								empregado[nFunTemp][8] = input.nextLine();
-								empregado[nFunTemp][10] = "1"; // Semanalmente
 								
 								System.out.println("Agenda de pagamento padrão (Semanalmente)?\n(1) - Sim\n(2) - Não");
 								aux = input.nextInt();
 								
 								if (aux == 1) {
-									empregado[nFunTemp][10] = "1"; // Semanalmente
+									empregado[nFunTemp][11] = "1"; // Semanalmente
+									empregado[nFunTemp][12] = "Padrão - Semanal";
 								}
 
 							} else if (Integer.parseInt(empregado[nFunTemp][3]) == 2) {
@@ -252,7 +255,8 @@ public class Main {
 								aux = input.nextInt();
 								
 								if (aux == 1) {
-									empregado[nFunTemp][10] = "2"; // Mensalmente
+									empregado[nFunTemp][11] = "2"; // Mensalmente
+									empregado[nFunTemp][12] = "Padrão - Mensal";
 								}							
 
 							} else if (Integer.parseInt(empregado[nFunTemp][3]) == 3) {
@@ -267,7 +271,8 @@ public class Main {
 								aux = input.nextInt();
 								
 								if (aux == 1) {
-									empregado[nFunTemp][10] = "3"; // Bi-semanalmente
+									empregado[nFunTemp][11] = "3"; // Bi-semanalmente
+									empregado[nFunTemp][12] = "Padrão - Bi-Semanal";
 								}
 								
 							} else {
@@ -363,8 +368,8 @@ public class Main {
 						opcao = "Último dia do mês";
 					}
 					
-					empregado[nFunTemp][10] = "4"; // Nova Agenda: Mensal
-					empregado[nFunTemp][11] =  "Mensalmente 		Dia: " + opcao;
+					empregado[nFunTemp][11] = "4"; // Nova Agenda: Mensal
+					empregado[nFunTemp][12] =  "Mensalmente 		Dia: " + opcao;
 					
 				} else if (opcao1 == 2) {
 					System.out.println("\nEscolha a frequencia:\n1 - Toda semana\n2 - A cada duas semanas\n3 - A cada três semanas\n...");
@@ -375,8 +380,8 @@ public class Main {
 					opcao3 = input.nextInt();
 					input.nextLine();
 					
-					empregado[nFunTemp][10] = "5";	// Nova Agenda: Semanal
-					empregado[nFunTemp][11] = "A cada " + opcao2 + " semana		Dia da semana: " + opcao3;
+					empregado[nFunTemp][11] = "5";	// Nova Agenda: Semanal
+					empregado[nFunTemp][12] = "A cada " + opcao2 + " semanas	Dia da semana: " + opcao3;
 					
 				} else {
 					System.out.println("\nErro: Opção Inváida.\n");
@@ -393,7 +398,7 @@ public class Main {
 				
 		
 			// Teste
-			System.out.println(empregado[1][10]);
+			//System.out.println(empregado[1][11]);
 		}
 		input.close();
 	}
@@ -437,7 +442,7 @@ public class Main {
 		
 		for (int i=0; i < linha ;i++) {
 			if (empregado[i][0] != null) {
-				if ((Integer.parseInt(empregado[i][10])) == agenda || agenda == 0){
+				if ((Integer.parseInt(empregado[i][11])) == agenda || agenda == 0){
 					System.out.println("==================================================================================");
 					System.out.printf("Número do empregado: %s		Nome: %s\n", empregado[i][0], empregado[i][1]);
 					System.out.println("--------------------------------------------------------------------------");
@@ -470,6 +475,8 @@ public class Main {
 					}
 									
 					System.out.printf("Tipo: %s		%s\n", tipo, salario);
+					System.out.println("--------------------------------------------------------------------------");
+					System.out.printf("Agenda de pagamento:  %s\n", empregado[i][12]);
 					System.out.println("--------------------------------------------------------------------------");
 					System.out.printf("Método de pagamento: %s\n", metPagamento);
 					System.out.println("--------------------------------------------------------------------------");
