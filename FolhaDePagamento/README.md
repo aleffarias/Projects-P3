@@ -1,5 +1,5 @@
-# Projects P3
-Projetos referente a matéria de Projeto de Software (P3).
+# Folha de Pagamento
+Projeto java sem orientação a objeto (primeiro projeto).
 
 ## Configurações
 * **Versão do java:** 1.8.0_201
