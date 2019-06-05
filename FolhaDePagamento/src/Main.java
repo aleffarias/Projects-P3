@@ -8,9 +8,9 @@ public class Main {
    N Funcionário | Nome | Endereço | Tipo | Metodo Pag. | Sindicato | N Sindicato | Salario | Salario Hora  | Taxa Comissão 
 	
 	       10           11          12                     13                               14
-	| Taxa Sindical | Agenda | Nova Agenda | Dia (mensal) ou Frequencia (semanal) | Dia semana (semanal)
+| Taxa Sindical | Agenda | Nova Agenda | Dia (mensal) ou Frequencia (semanal) | Dia semana (semanal)
 */
-	static int linha = 100, coluna = 15, dia = 1, semana = 1, mes = 1, ano = 2019, contador = 0;
+	static int linha = 100, coluna = 15, dia = 1, semana = 1, mes = 1, ano = 2019, diaSemana = 1;
 	static String[][] empregado = new String[linha][coluna];
 	
 	
@@ -23,6 +23,8 @@ public class Main {
 				
 		while (key != 0) {
 			
+			System.out.println("Dia: " + dia + " Mês: " + mes + " Ano: " + ano + " Semana: " + semana + " Dia semana: " + diaSemana);
+			
 			System.out.println("\nEscolha uma opção:");
 			System.out.println("(1) - Adicionar Empregado");
 			System.out.println("(2) - Remover Empregado");
@@ -30,7 +32,7 @@ public class Main {
 			System.out.println("(4) - Lançar um Resultado Venda");
 			System.out.println("(5) - Lançar uma taxa de serviço");
 			System.out.println("(6) - Alterar detalhes de um empregado");
-			System.out.println("(7) - Rodar a folha de pagamento para hoje");
+			System.out.println("(7) - Rodar a folha de pagamento para hoje (após rodar, avança 1 dia)");
 			System.out.println("(8) - Undo/redo");
 			System.out.println("(9) - Agenda de Pagamento");
 			System.out.println("(10) - Criação de Novas Agendas de Pagamento");
@@ -329,46 +331,24 @@ public class Main {
 				break;
 			case 7:
 				System.out.println("\n**  	RODAR A FOLHA DE PAGAMENTO  	**\n");
-				aux = -1;
 				
-				while (aux != 0) {
-					System.out.println("==================================================================================");
-					System.out.println("Dia: " + dia + " Mês: " + mes + " Ano: " + ano + "Semana: " + semana + "\n\n");
-					
-					for (int i = 0; i < linha; i++) {
-						if ((empregado[i][3] == "1") && ()) {
-							
+				System.out.println("Verificando Empregados...");
+	
+				for (int i = 0; i < linha; i++) {
+					if (empregado[i][0] != null) {
+						System.out.println(empregado[i][3]);
+						System.out.println(empregado[i][14]);
+						
+						if ((Integer.parseInt(empregado[i][3]) == 1) && (Integer.parseInt(empregado[i][14]) == diaSemana)) {
+							System.out.println("Entrou");
+							contraCheque(i);
 							empregado[i][3] = "0"; // Zera salário após pagamento
 						}
 					}
-					
-					System.out.println("Escolha uma opção:\n(1) - Avançar um dia\n(0) - Sair");
-					aux = input.nextInt();
-					input.nextLine();
-					
-					if (aux == 1) {
-						dia++;
-						contador++; // semana
-						
-					}
-					
-					if (contador == 7) {
-						semana++;
-						contador = 0;
-					}
-					
-					if (dia == 31 && mes != 12) {
-						dia = 1;
-						semana = 1;
-						mes++;
-					}
-					
-					if (dia == 31 && mes == 12) {
-						dia = 1;
-						mes = 1;
-						ano++;
-					}
-				}
+				}										
+				
+				dia++;
+				diaSemana++; // semana
 				
 				break;
 			
@@ -440,15 +420,33 @@ public class Main {
 				}
 				
 				break;
-							
+				
 			case 0:
 				System.exit(0);
 				
 			default:
 				System.out.println("\nErro: Opção Inválida.\n");
 			}
-				
-		
+			
+			// Data		
+			if (diaSemana == 8) {
+				semana++;
+				diaSemana = 1;
+			}
+			
+			if (dia == 31 && mes != 12) {
+				dia = 1;
+				semana = 1;
+				mes++;
+			}
+			
+			if (dia == 31 && mes == 12) {
+				dia = 1;
+				mes = 1;
+				ano++;
+			}
+			
+			
 			// Teste
 			//System.out.println(empregado[1][11]);
 		}
@@ -542,4 +540,54 @@ public class Main {
 			}
 		}
 	}
+	
+	public static void contraCheque (int i) {
+			String tipo = "";
+			String metPagamento = "";
+			String sindicato = "";
+			String salario = "";
+			
+			System.out.println("=============================CONTRACHEQUE=========================================");
+			System.out.printf("Número do empregado: %s		Nome: %s\n", empregado[i][0], empregado[i][1]);
+			System.out.println("--------------------------------------------------------------------------");
+			System.out.printf("Endereço: %s\n", empregado[i][2]);
+			System.out.println("--------------------------------------------------------------------------");
+			
+			if (Integer.parseInt(empregado[i][3]) == 1) {
+				tipo = "Horista";
+				salario = "Salário Hora: R$ " + Double.parseDouble(empregado[i][8]);
+			} else if (Integer.parseInt(empregado[i][3]) == 2){
+				tipo = "Assalariado";
+				salario = "Salário Bruto: R$ " + Double.parseDouble(empregado[i][7]);
+			} else if (Integer.parseInt(empregado[i][3]) == 3) {
+				tipo = "Comissionado";
+				salario = "Salário Bruto: R$ " + Double.parseDouble(empregado[i][7]) + "		Comissão: " + Double.parseDouble(empregado[i][9]) + " %";
+			}
+			
+			if (Integer.parseInt(empregado[i][4]) == 1) {
+				metPagamento = "Cheque pelos correios";
+			} else if (Integer.parseInt(empregado[i][4]) == 2) {
+				metPagamento = "Cheque em mãos";
+			} else if (Integer.parseInt(empregado[i][4]) == 3) {
+				metPagamento = "Depósito em conta bancária";
+			}
+			
+			if (Integer.parseInt(empregado[i][6]) == -1) {
+				sindicato = "Não Pertence";
+			} else {
+				sindicato = empregado[i][6] + "		Taxa Sindical: R$ " + Double.parseDouble(empregado[i][10]);
+			}
+							
+			System.out.printf("Tipo: %s		%s\n", tipo, salario);
+			System.out.println("--------------------------------------------------------------------------");
+			System.out.printf("Agenda de pagamento:  %s\n", empregado[i][12]);
+			System.out.println("--------------------------------------------------------------------------");
+			System.out.printf("Método de pagamento: %s\n", metPagamento);
+			System.out.println("--------------------------------------------------------------------------");
+			System.out.printf("Número do sindicato: %s\n", sindicato);
+			System.out.println("__________________________________________________________________________");
+			System.out.printf("\nSalário Liquido: R$ %s\n", Double.parseDouble(empregado[i][7]));
+			System.out.println("==================================================================================\n");
+		
+	}	
 }
