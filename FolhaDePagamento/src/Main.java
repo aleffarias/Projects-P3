@@ -1,5 +1,3 @@
-//import java.util.GregorianCalendar;
-//import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class Main {
@@ -7,8 +5,8 @@ public class Main {
 /*        0          1       2         3         4            5             6            7               8                9    
    N Funcionário | Nome | Endereço | Tipo | Metodo Pag. | Sindicato | N Sindicato | Salario Bruto| Salario Hora  | Taxa Comissão 
 	
-	       10           11          12                     13                               14                15
-| Taxa Sindical | Agenda | Nova Agenda | Dia (mensal) ou Frequencia (semanal) | Dia semana (semanal) | Salario Liquido
+	   10           11          12                     13                               14                   15
+  Taxa Sindical | Agenda | Nova Agenda | Dia (mensal) ou Frequencia (semanal) | Dia semana (semanal) | Salario Liquido
 */
 	static int linha = 100, coluna = 16, dia = 1, semana = 1, mes = 1, ano = 2019, diaSemana = 1;
 	static String[][] empregado = new String[linha][coluna];
@@ -23,7 +21,7 @@ public class Main {
 				
 		while (key != 0) {
 			
-			System.out.println("Dia: " + dia + " Mês: " + mes + " Ano: " + ano + " Semana: " + semana + " Dia semana: " + diaSemana);
+			System.out.println("Dia: " + dia + " Mês: " + mes + " Ano: " + ano);
 			
 			System.out.println("\nEscolha uma opção:");
 			System.out.println("(1) - Adicionar Empregado");
@@ -44,6 +42,7 @@ public class Main {
 			switch (key) {
 			case 1:
 				System.out.println("\n**  ADICIONAR FUNCIONÁRIO  **\n");
+				empregado[numeroFuncionario][7] = "0";
 				empregado[numeroFuncionario][15] = "0";
 				empregado[numeroFuncionario][0] = Integer.toString(numeroFuncionario);
 				
@@ -72,6 +71,7 @@ public class Main {
 						
 						System.out.print("\nInforme o salário fixo mensal:\nExemplo: 1500 - 3000.56\nR$ ");
 						empregado[numeroFuncionario][7] = input.nextLine();	
+						empregado[numeroFuncionario][15] = empregado[numeroFuncionario][7];
 	
 					} else if (Integer.parseInt(empregado[numeroFuncionario][3]) == 3) {
 						empregado[numeroFuncionario][11] = "3"; // Bi-semanalmente
@@ -80,7 +80,8 @@ public class Main {
 						empregado[numeroFuncionario][14] = "5"; // Sexta
 						
 						System.out.print("\nInforme o salário:\nExemplo: 1500 - 3000.56\nR$ ");
-						empregado[numeroFuncionario][7] = input.nextLine();
+						empregado[numeroFuncionario][7] = input.nextLine();	
+						empregado[numeroFuncionario][15] = empregado[numeroFuncionario][7];
 						
 						System.out.println("\nInforme o percentual de comissão:\nExemplo: 1.5 - 0.6");
 						empregado[numeroFuncionario][9] = input.nextLine();
@@ -176,8 +177,6 @@ public class Main {
 					
 					System.out.println("\nResultado da venda registrado com sucesso!\n");
 					
-					// Imprimir comprovante
-					
 				} else {
 					System.out.println("\nErro: Empregado não é comissionado.\n");
 				}
@@ -188,22 +187,26 @@ public class Main {
 				System.out.println("\n**  	LANÇAR TAXA DE SERVIÇO  	**\n");
 				System.out.println("Digite o número do Empregado:");
 				nFunTemp = input.nextInt();
+				input.nextLine();
 				
-				if (((empregado[nFunTemp][5]) == "s") || ((empregado[nFunTemp][5]) == "S")) { // Verificar se o funcionário é do sindicato
+				if (((Integer.parseInt(empregado[nFunTemp][5])) == 1) ) { // Verificar se o funcionário é do sindicato
 
-					System.out.printf("\nServiço prestado:");
+					System.out.println("\nServiço prestado:");
 					String servicoPrestado = input.nextLine();
 					
 					System.out.println("\nValor da taxa de serviço:");
-					float valorServico = input.nextFloat();
+					double valorServico = input.nextDouble();
+					input.nextLine();
 					
 					System.out.println("\nTaxa de serviço registrada com sucesso!\n");
 					
-					// Imprimir comprovante
+					empregado[nFunTemp][15] = Double.toString(Double.parseDouble(empregado[nFunTemp][15]) - valorServico);
 					
 				} else {
 					System.out.println("\nErro: Empregado não pertence ao sindicato.\n");
 				}
+				
+				break;
 			case 6:				
 				System.out.println("\n**  	ALTERAR DETALHES DO EMPREGADO  	**\n");
 				System.out.println("Digite o número do Funcionário:");
@@ -262,7 +265,8 @@ public class Main {
 							} else if (Integer.parseInt(empregado[nFunTemp][3]) == 2) {
 								
 								System.out.print("\nInforme o salário fixo mensal:\nExemplo: 1500 - 3000.56\nR$ ");
-								empregado[nFunTemp][7] = input.nextLine();
+								empregado[nFunTemp][7] = input.nextLine();	
+								empregado[nFunTemp][15] = empregado[nFunTemp][7];
 								
 								System.out.println("Agenda de pagamento padrão (Mensal)?\n(1) - Sim\n(2) - Não");
 								aux = input.nextInt();
@@ -276,7 +280,8 @@ public class Main {
 							} else if (Integer.parseInt(empregado[nFunTemp][3]) == 3) {
 								
 								System.out.print("\nInforme o salário:\nExemplo: 1500 - 3000.56\nR$ ");
-								empregado[nFunTemp][7] = input.nextLine();
+								empregado[nFunTemp][7] = input.nextLine();	
+								empregado[nFunTemp][15] = empregado[nFunTemp][7];
 								
 								System.out.println("\nInforme o percentual de comissão:\nExemplo: 1.5 - 0.6");
 								empregado[nFunTemp][9] = input.nextLine();
@@ -348,11 +353,13 @@ public class Main {
 						
 						if ((((Integer.parseInt(empregado[i][11]) == 1) || (Integer.parseInt(empregado[i][11]) == 3) || (Integer.parseInt(empregado[i][11]) == 5)) 
 							&& (Integer.parseInt(empregado[i][13]) == semana)) && (Integer.parseInt(empregado[i][14]) == diaSemana)) {
-								/*||
-							((Integer.parseInt(empregado[i][11]) == 2) && (Integer.parseInt(empregado[i][13]) == diaSemana) && (Integer.parseInt(empregado[i][14]) == semana)) ||
-							((Integer.parseInt(empregado[i][11]) == 3) && (Integer.parseInt(empregado[i][13]) == diaSemana) && (Integer.parseInt(empregado[i][14]) == semana))) {
-							*/
 								
+							contracheque(i);
+							empregado[i][15] = "0"; // Zera salário após pagamento
+							
+						} else if (((Integer.parseInt(empregado[i][11]) == 2) || (Integer.parseInt(empregado[i][11]) == 4)) && (Integer.parseInt(empregado[i][13]) == dia)) {
+							
+							System.out.println("Entrou assalariado");
 							contracheque(i);
 							empregado[i][15] = "0"; // Zera salário após pagamento
 						}
@@ -370,7 +377,7 @@ public class Main {
 				break;
 			
 			case 9:
-				System.out.println("\n**  	AGENDA DE PAGAMENTO 	**\n");
+				System.out.println("\n**  				AGENDA DE PAGAMENTO 				**\n");
 				
 				// Agenda padrão
 				System.out.println("\nEMPREGADOS PAGOS SEMANALMENTE");	
@@ -388,6 +395,8 @@ public class Main {
 				
 				System.out.println("\nNOVA AGENDA: SEMANAL");			
 				todosEmpregados(5);
+				
+				System.out.println("\n");
 				
 				break;
 			
@@ -413,6 +422,8 @@ public class Main {
 					empregado[nFunTemp][12] =  "Mensalmente 		Dia: " + opcao;
 					empregado[nFunTemp][13] = opcao; // DIa do mês
 					
+					System.out.println("\nNova agenda de pagamento criada com sucesso!\n");
+					
 				} else if (opcao1 == 2) {
 					System.out.println("\nEscolha a frequencia:\n1 - Toda semana\n2 - A cada duas semanas\n3 - A cada três semanas\n...");
 					opcao2 = input.nextInt();
@@ -423,9 +434,11 @@ public class Main {
 					input.nextLine();
 					
 					empregado[nFunTemp][11] = "5";	// Nova Agenda: Semanal
-					empregado[nFunTemp][12] = "A cada " + opcao2 + " semanas	Dia da semana: " + opcao3;
+					empregado[nFunTemp][12] = "A cada " + opcao2 + " semana(s)	Dia da semana: " + opcao3;
 					empregado[nFunTemp][13] = Integer.toString(opcao2); // Frequencia semanas 
 					empregado[nFunTemp][14] = Integer.toString(opcao3); // Dia da semana
+					
+					System.out.println("\nNova agenda de pagamento criada com sucesso!\n");
 					
 				} else {
 					System.out.println("\nErro: Opção Inváida.\n");
@@ -457,10 +470,6 @@ public class Main {
 				mes = 1;
 				ano++;
 			}
-			
-			
-			// Teste
-			//System.out.println(empregado[1][11]);
 		}
 		input.close();
 	}
@@ -513,13 +522,13 @@ public class Main {
 					
 					if (Integer.parseInt(empregado[i][3]) == 1) {
 						tipo = "Horista";
-						salario = "Salário Hora: R$ " + Double.parseDouble(empregado[i][8]);
+						salario = "Salário Hora: R$ " + String.format("%.2f", Double.parseDouble(empregado[i][8]));
 					} else if (Integer.parseInt(empregado[i][3]) == 2){
 						tipo = "Assalariado";
-						salario = "Salário: R$ " + Double.parseDouble(empregado[i][7]);
+						salario = "Salário Bruto: R$ " + String.format("%.2f", Double.parseDouble(empregado[i][7]));
 					} else if (Integer.parseInt(empregado[i][3]) == 3) {
 						tipo = "Comissionado";
-						salario = "Salário: R$ " + Double.parseDouble(empregado[i][7]) + "	  Comissão: " + Double.parseDouble(empregado[i][9]) + " %";
+						salario = "Salário Bruto: R$ " + String.format("%.2f", Double.parseDouble(empregado[i][7])) + "	Comissão: " + Double.parseDouble(empregado[i][9]) + " %";
 					}
 					
 					if (Integer.parseInt(empregado[i][4]) == 1) {
@@ -533,12 +542,12 @@ public class Main {
 					if (Integer.parseInt(empregado[i][6]) == -1) {
 						sindicato = "Não Pertence";
 					} else {
-						sindicato = empregado[i][6] + "		Taxa Sindical: R$ " + Double.parseDouble(empregado[i][10]);
+						sindicato = empregado[i][6] + "		Taxa Sindical: R$ " + String.format("%.2f", Double.parseDouble(empregado[i][10]));
 					}
 									
 					System.out.printf("Tipo: %s		%s\n", tipo, salario);
 					System.out.println("--------------------------------------------------------------------------");
-					System.out.printf("Agenda de pagamento:  %s\n", empregado[i][12]);
+					System.out.printf("Agenda de pagamento: %s\n", empregado[i][12]);
 					System.out.println("--------------------------------------------------------------------------");
 					System.out.printf("Método de pagamento: %s\n", metPagamento);
 					System.out.println("--------------------------------------------------------------------------");
@@ -553,7 +562,7 @@ public class Main {
 			String tipo = "";
 			String metPagamento = "";
 			String sindicato = "";
-			String salario = "";
+			String salario = "";		
 			
 			System.out.println("===============================CONTRACHEQUE=======================================");
 			System.out.printf("Número do empregado: %s		Nome: %s\n", empregado[i][0], empregado[i][1]);
@@ -563,13 +572,13 @@ public class Main {
 			
 			if (Integer.parseInt(empregado[i][3]) == 1) {
 				tipo = "Horista";
-				salario = "Salário Hora: R$ " + Double.parseDouble(empregado[i][8]);
+				salario = "Salário Hora: R$ " + String.format("%.2f", Double.parseDouble(empregado[i][8]));
 			} else if (Integer.parseInt(empregado[i][3]) == 2){
 				tipo = "Assalariado";
-				salario = "Salário Bruto: R$ " + Double.parseDouble(empregado[i][7]);
+				salario = "Salário Bruto: R$ " + String.format("%.2f", Double.parseDouble(empregado[i][7]));
 			} else if (Integer.parseInt(empregado[i][3]) == 3) {
 				tipo = "Comissionado";
-				salario = "Salário Bruto: R$ " + Double.parseDouble(empregado[i][7]) + "	Comissão: " + Double.parseDouble(empregado[i][9]) + " %";
+				salario = "Salário Bruto: R$ " + String.format("%.2f", Double.parseDouble(empregado[i][7])) + "	Comissão: " + Double.parseDouble(empregado[i][9]) + " %";
 			}
 			
 			if (Integer.parseInt(empregado[i][4]) == 1) {
@@ -583,18 +592,19 @@ public class Main {
 			if (Integer.parseInt(empregado[i][6]) == -1) {
 				sindicato = "Não Pertence";
 			} else {
-				sindicato = empregado[i][6] + "		Taxa Sindical: R$ " + Double.parseDouble(empregado[i][10]);
+				sindicato = empregado[i][6] + "		Taxa Sindical: R$ " + String.format("%.2f", Double.parseDouble(empregado[i][10]));
+				empregado[i][15] = Double.toString((Double.parseDouble(empregado[i][15]) - Double.parseDouble(empregado[i][10])));
 			}
 							
 			System.out.printf("Tipo: %s		%s\n", tipo, salario);
 			System.out.println("--------------------------------------------------------------------------");
-			System.out.printf("Agenda de pagamento:  %s\n", empregado[i][12]);
+			System.out.printf("Agenda de pagamento: %s\n", empregado[i][12]);
 			System.out.println("--------------------------------------------------------------------------");
 			System.out.printf("Método de pagamento: %s\n", metPagamento);
 			System.out.println("--------------------------------------------------------------------------");
 			System.out.printf("Número do sindicato: %s\n", sindicato);
-			System.out.println("__________________________________________________________________________");
-			System.out.printf("\nSalário Liquido: R$ %s\n", Double.parseDouble(empregado[i][15]));
+			System.out.println("\n__________________________________________________________________________");
+			System.out.printf("\nSalário Liquido: R$ %s\n", String.format("%.2f", Double.parseDouble(empregado[i][15])));
 			System.out.println("==================================================================================\n");
 		
 	}	
