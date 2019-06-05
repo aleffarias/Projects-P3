@@ -252,7 +252,7 @@ public class Main {
 								System.out.print("\nInforme o salário por hora trabalhada:\nExemplo: 1.5 - 3\nR$ ");
 								empregado[nFunTemp][8] = input.nextLine();
 								
-								System.out.println("Agenda de pagamento padrão (Semanalmente)?\n(1) - Sim\n(2) - Não");
+								System.out.println("\nAgenda de pagamento padrão (Semanalmente)?\n(1) - Sim\n(2) - Não");
 								aux = input.nextInt();
 								
 								if (aux == 1) {
@@ -268,7 +268,7 @@ public class Main {
 								empregado[nFunTemp][7] = input.nextLine();	
 								empregado[nFunTemp][15] = empregado[nFunTemp][7];
 								
-								System.out.println("Agenda de pagamento padrão (Mensal)?\n(1) - Sim\n(2) - Não");
+								System.out.println("\nAgenda de pagamento padrão (Mensal)?\n(1) - Sim\n(2) - Não");
 								aux = input.nextInt();
 								
 								if (aux == 1) {
@@ -286,7 +286,7 @@ public class Main {
 								System.out.println("\nInforme o percentual de comissão:\nExemplo: 1.5 - 0.6");
 								empregado[nFunTemp][9] = input.nextLine();
 								
-								System.out.println("Agenda de pagamento padrão (Bi-semanalmente)?\n(1) - Sim\n(2) - Não");
+								System.out.println("\nAgenda de pagamento padrão (Bi-semanalmente)?\n(1) - Sim\n(2) - Não");
 								aux = input.nextInt();
 								
 								if (aux == 1) {
