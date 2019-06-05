@@ -347,12 +347,30 @@ public class Main {
 	
 				for (int i = 0; i < linha; i++) {
 					if (empregado[i][0] != null) {
-						System.out.println(empregado[i][3]);
-						System.out.println(empregado[i][13]);
-						System.out.println(empregado[i][14]);
-						
+
+                        // Frequencia da semana
+                        boolean check = false;
+                        if (Integer.parseInt(empregado[i][13]) == 1) {
+                            check = true;
+                        } else if (Integer.parseInt(empregado[i][13]) == 2) {
+                            if (semana == 2 || semana == 4){
+                                check = true;
+                            }
+                        } else if (Integer.parseInt(empregado[i][13]) == 3) {
+                            if (semana == 3){
+                                check = true;
+                            }
+                        } else if (Integer.parseInt(empregado[i][13]) == 4) {
+                            if (semana == 4){
+                                check = true;
+                            }
+                        } else {
+                            check = false;
+                        }
+                        
+
 						if ((((Integer.parseInt(empregado[i][11]) == 1) || (Integer.parseInt(empregado[i][11]) == 3) || (Integer.parseInt(empregado[i][11]) == 5)) 
-							&& (Integer.parseInt(empregado[i][13]) == semana)) && (Integer.parseInt(empregado[i][14]) == diaSemana)) {
+							&& (check == true)) && (Integer.parseInt(empregado[i][14]) == diaSemana)) {
 								
 							contracheque(i);
 							empregado[i][15] = "0"; // Zera salário após pagamento
@@ -364,7 +382,9 @@ public class Main {
 							empregado[i][15] = "0"; // Zera salário após pagamento
 						}
 					}
-				}										
+                }
+                
+                System.out.println("\nData: " + dia + "/ " + mes + " / " + ano + " -  Folha de pagamento executada com sucesso!\n");
 				
 				dia++;
 				diaSemana++; // semana
@@ -413,11 +433,12 @@ public class Main {
 				if (opcao1 == 1) {
 					System.out.println("\nEscolha o dia ou digite $ para o último dia do mês");
 					opcao = input.nextLine();
-					
-					if (opcao == "$") {
+                    
+					String string = "$";
+                    if (opcao == string) {
 						opcao = "Último dia do mês";
 					}
-					
+
 					empregado[nFunTemp][11] = "4"; // Nova Agenda: Mensal
 					empregado[nFunTemp][12] =  "Mensalmente 		Dia: " + opcao;
 					empregado[nFunTemp][13] = opcao; // DIa do mês
@@ -510,7 +531,7 @@ public class Main {
 		String metPagamento = "";
 		String sindicato = "";
 		String salario = "";
-		
+
 		for (int i=0; i < linha ;i++) {
 			if (empregado[i][0] != null) {
 				if ((Integer.parseInt(empregado[i][11])) == agenda || agenda == 0){
