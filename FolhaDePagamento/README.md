@@ -20,7 +20,7 @@ deduzidos do seu salário."
 
 **2. Remover Empregado** 
 * Antes de remover, mostra todos os empreados cadastrados (todosEmpregos(0)).
-* Após escolher o funcionário, atribui null para todos os índices da coluna da matriz empregado[][].
+* Após escolher o funcionário, atribui null para todos os índices da coluna da matriz empregado[ ][ ].
 
 **3. Lançar Cartão de Ponto**
 * Verifica se o funcionário é horista.
