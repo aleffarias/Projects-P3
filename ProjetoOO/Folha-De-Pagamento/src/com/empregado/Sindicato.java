@@ -1,4 +1,4 @@
-package folhapagamento.empregado;
+package com.empregado;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package folhapagamento.empregado;
+package com.empregado;
 
 import java.util.Scanner;
 
@@ -6,19 +6,15 @@ public class Comissionado extends Empregado {
 	
 	Scanner input = new Scanner(System.in);
 	
-	// Construtor 
-	public Comissionado(int numeroEmpregado, String nome, String endereco, int tipo, int metodoPagamento,
-			int isSindicato) {
-		super(numeroEmpregado, nome, endereco, tipo, metodoPagamento, isSindicato);
+	public Comissionado(int numeroEmpregado, String nome, String endereco, int metodoPagamento, int isSindicato, int tipo) {
+		super(numeroEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo);
 	}
-	
-	// Implementar uma lista de resultados de vendas para consulta
 	
 	
 	// Agenda Padrão
-	private String agenda = "bi-semanal";
 	private int frequencia = 2;
 	private int diaSemana = 5;
+	private String agenda = "Semanal - Padrão" + "	 Frequência: A cada " + this.frequencia + " semana(s)" + "	 Dia da semana: " + this.diaSemana;
 	
 	
 	// Salário
@@ -30,9 +26,11 @@ public class Comissionado extends Empregado {
 	public void salario() {
 		System.out.print("\nInforme o salário:\nExemplo: 1500 - 3000.56\nR$ ");
 		double salarioTemp = input.nextDouble();
+		input.nextLine();
 		
 		System.out.println("\nInforme o percentual de comissão:\nExemplo: 15 para 15% 1.5 para 1.5%");
 		this.comissao = input.nextDouble();
+		input.nextLine();
 		
 		this.salarioComissionadoFixo = salarioTemp;
 		
@@ -100,14 +98,15 @@ public class Comissionado extends Empregado {
 		return comissao;
 	}
 	
+	@Override
 	public String toString() {
 		String string;
 		
 		string = super.toString();
 		
-		string += "Tipo: Comissionado		Agenda de Pagamento: " + this.agenda + "	Frequência: A cada " + this.frequencia + " semana(s)" + "	Dia da semana: " + diaSemana;
+		string += "Tipo: Comissionado		Salário Bruto: R$ " + this.salarioComissionadoFixo + "	Comissão: " + this.comissao + "%";
 		string += "\n--------------------------------------------------------------------------------------------------------\n";
-		string += "Salário Bruto: R$ " + this.salarioComissionadoFixo + "	Comissão: " + this.comissao + "%";
+		string += "Agenda de Pagamento: " + this.agenda;
 		string += "\n_________________________________________________________________________________________________________\n";
 		string += "Salário Líquido: R$ " + this.salarioComissionadoLiq;
 		

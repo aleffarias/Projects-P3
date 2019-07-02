@@ -1,4 +1,4 @@
-package folhapagamento.empregado;
+package com.empregado;
 
 import java.util.Scanner;
 
@@ -6,15 +6,15 @@ public class Horista extends Empregado {
 	
 	Scanner input = new Scanner(System.in);
 	
-	// Construtor 
-	public Horista(int numeroEmpregado, String nome, String endereco, int tipo, int metodoPagamento, int isSindicato) {
-		super(numeroEmpregado, nome, endereco, tipo, metodoPagamento, isSindicato);
+	
+	public Horista(int numeroEmpregado, String nome, String endereco, int metodoPagamento, int isSindicato, int tipo) {
+		super(numeroEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo);
 	}
 	
 	// Agenda Padrão
-	private String agenda = "semanal";
 	private int frequencia = 1;
 	private int diaSemana = 5;
+	private String agenda = "Semanal - Padrão" + "	 Frequência: A cada " + this.frequencia + " semana(s)" + "	 Dia da semana: " + this.diaSemana;
 
 	// Salário
 	private double salarioHorista = 0;
@@ -24,6 +24,7 @@ public class Horista extends Empregado {
 	public void salario() {
 		System.out.print("\nInforme o salário por hora trabalhada:\nExemplo: 1.5 - 3\nR$ ");
 		double salarioTemp = input.nextDouble();
+		input.nextLine();
 		
 		this.salarioHora = salarioTemp;
 		
@@ -100,20 +101,21 @@ public class Horista extends Empregado {
 	public void setDiaSemana(int diaSemana) {
 		this.diaSemana = diaSemana;
 	}
-
+	
 	public double getSalarioHorista() {
 		return salarioHorista;
 	}
 	
+	@Override
 	public String toString() {
 		String string;
 		
 		string = super.toString();
 		
-		string += "Tipo: Horista		Agenda de Pagamento: " + agenda + "		Frequência: A cada " + frequencia + " semana(s)" + "	Dia da semana: " + diaSemana;
+		string += "Tipo: Horista		Salário Hora: R$ " + this.salarioHora;
 		string += "\n--------------------------------------------------------------------------------------------------------\n";
-		string += "Salário Hora: R$ " + salarioHora;
-		string += "\n__________________________________________________________________________\n";
+		string += "Agenda de Pagamento: " + this.agenda;
+		string += "\n________________________________________________________________________________________________________\n";
 		string += "Salário Líquido: R$ " + salarioHorista;
 		
 		return string;

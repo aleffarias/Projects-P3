@@ -1,4 +1,4 @@
-package folhapagamento.empregado;
+package com.empregado;
 
 import java.util.Scanner;
 
@@ -12,10 +12,9 @@ public abstract class Empregado {
 
 	Sindicato sindicato = new Sindicato();
 	
-	 static Scanner input = new Scanner(System.in);
+	static Scanner input = new Scanner(System.in);
 	
-	// Construtor
-	public Empregado(int numeroEmpregado, String nome, String endereco, int tipo, int metodoPagamento, int isSindicato) {
+	public Empregado(int numeroEmpregado, String nome, String endereco, int metodoPagamento, int isSindicato, int tipo) {
 		this.numeroEmpregado = numeroEmpregado;
 		this.nome = nome;
 		this.endereco = endereco;
@@ -149,6 +148,7 @@ public abstract class Empregado {
 		this.sindicato = sindicato;
 	}
 	
+	@Override
 	public String toString() {
 		String string;
 		
