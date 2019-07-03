@@ -46,7 +46,7 @@ public class Funcionalidades {
 		  
 		  if (tipo == 1) {
 			  
-			  Horista horista = new Horista(numEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo);
+			  Horista horista = new Horista(numEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo, "1 - Semanal", 5);
 			 
 			  horista.salario();
 			  
@@ -59,7 +59,7 @@ public class Funcionalidades {
 			  listaEmpregados.add(horista);
 			  
 		  } else if (tipo == 2) {
-			  Assalariado assalariado = new Assalariado(numEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo);
+			  Assalariado assalariado = new Assalariado(numEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo, "Mensal", 30);
 			  
 			  assalariado.salario();
 			  
@@ -72,7 +72,7 @@ public class Funcionalidades {
 			  listaEmpregados.add(assalariado);
 			  
 		  } else if (tipo == 3) {
-			  Comissionado comissionado = new Comissionado(numEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo);
+			  Comissionado comissionado = new Comissionado(numEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo, "2 - Semanal", 5);
 			  
 			  comissionado.salario();
 			  
@@ -201,13 +201,35 @@ public class Funcionalidades {
 		
 	}
 	
-	public void rodarFolha() {
+	public void rodarFolha(int dia, int diaSemana) {
 		System.out.println("\n**  	RODAR A FOLHA DE PAGAMENTO  	**\n");
 		System.out.println("Verificando Empregados...");
+			
+		for (int i=0; i < listaEmpregados.size(); i++) {
+	
+			if ((listaEmpregados.get(i).getTipoAgenda() == "1 - Semanal") && (listaEmpregados.get(i).getDiaFrequencia() == diaSemana)) {		
+				
+				listaEmpregados.get(i).pagarEmpregado(listaEmpregados, i);
+				
+			} else if ((listaEmpregados.get(i).getTipoAgenda() == "2 - Semanal") && (listaEmpregados.get(i).getDiaFrequencia() == diaSemana)) {
+				
+				listaEmpregados.get(i).pagarEmpregado(listaEmpregados, i);
+				
+			} else if ((listaEmpregados.get(i).getTipoAgenda() == "3 - Semanal") && (listaEmpregados.get(i).getDiaFrequencia() == diaSemana)) {
+				
+				listaEmpregados.get(i).pagarEmpregado(listaEmpregados, i);
+				
+			} else if ((listaEmpregados.get(i).getTipoAgenda() == "Mensal") && (listaEmpregados.get(i).getDiaFrequencia() == dia)) {
+				
+				listaEmpregados.get(i).pagarEmpregado(listaEmpregados, i);
 		
+			}
+		}
 		
+		System.out.println("Verificando Empregados...");
 		
 	}
+		
 	
 	public void agendaPagamento() {
 		System.out.println("\n**  				AGENDA DE PAGAMENTO 				**\n");
@@ -218,7 +240,6 @@ public class Funcionalidades {
 	
 	public void novaAgenda() {
 		System.out.println("\n**  	CRIAR AGENDA DE PAGAMENTO 	**\n");
-		System.out.println("\n**  	ALTERAR DETALHES DO EMPREGADO  	**\n");
 		System.out.println("Digite o número do Funcionário:");
 		int nEmpTemp = input.nextInt();
 		input.nextLine();

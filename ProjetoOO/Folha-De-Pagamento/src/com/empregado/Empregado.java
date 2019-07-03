@@ -1,5 +1,6 @@
 package com.empregado;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class Empregado {
@@ -9,18 +10,24 @@ public abstract class Empregado {
 	private int tipo;
 	private int metodoPagamento;
 	private int isSindicato = 0;
+	
+	// Agenda
+	private String tipoAgenda;
+	private int diaFrequencia;
 
 	Sindicato sindicato = new Sindicato();
 	
 	static Scanner input = new Scanner(System.in);
 	
-	public Empregado(int numeroEmpregado, String nome, String endereco, int metodoPagamento, int isSindicato, int tipo) {
+	public Empregado(int numeroEmpregado, String nome, String endereco, int metodoPagamento, int isSindicato, int tipo, String tipoAgenda, int diaSemana) {
 		this.numeroEmpregado = numeroEmpregado;
 		this.nome = nome;
 		this.endereco = endereco;
 		this.tipo = tipo;
 		this.metodoPagamento = metodoPagamento;
 		this.isSindicato = isSindicato;
+		this.tipoAgenda = tipoAgenda;
+		this.diaFrequencia = diaSemana;
 	}
 	
 	public void alterarDetalhes(int opcao) {
@@ -82,6 +89,7 @@ public abstract class Empregado {
 	
 	
 	public abstract void salario();
+	public abstract void pagarEmpregado(ArrayList<Empregado> empregado, int index);
 
 	
 	//======================================= Get/Set =================================================
@@ -168,7 +176,7 @@ public abstract class Empregado {
 		string += "\n--------------------------------------------------------------------------------------------------------\n";
 		
 		if (isSindicato == 1) {
-			string += "Sindicado: Pertence			Número do Sindicato: " + this.sindicato.getNumeroSindicato() ;
+			string += "Sindicado: Pertence		Número do Sindicato: " + this.sindicato.getNumeroSindicato() + "		Taxa Sindical: R$ " + this.sindicato.getTaxaSindicall();
 		} else {
 			string += "Sindicado: Não Pertence";
 		}
@@ -176,6 +184,22 @@ public abstract class Empregado {
 		string += "\n--------------------------------------------------------------------------------------------------------\n";
 		
 		return string;
+	}
+
+	public String getTipoAgenda() {
+		return tipoAgenda;
+	}
+
+	public void setTipoAgenda(String tipoAgenda) {
+		this.tipoAgenda = tipoAgenda;
+	}
+
+	public int getDiaFrequencia() {
+		return diaFrequencia;
+	}
+
+	public void setDiaFrequencia(int diaFrequencia) {
+		this.diaFrequencia = diaFrequencia;
 	}
 	
 }

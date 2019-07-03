@@ -21,7 +21,8 @@ public class EditarDetalhes {
 		  
 		  if (tipo == 1) {
 			  novoEmpregado = new Horista(listaEmpregados.get(i).getNumeroEmpregado(), listaEmpregados.get(i).getNome(), 
-					  listaEmpregados.get(i).getEndereco(), listaEmpregados.get(i).getMetodoPagamento(), listaEmpregados.get(i).getIsSindicato(), tipo);
+					  listaEmpregados.get(i).getEndereco(), listaEmpregados.get(i).getMetodoPagamento(), listaEmpregados.get(i).getIsSindicato(), 
+					  tipo, listaEmpregados.get(i).getTipoAgenda(), listaEmpregados.get(i).getDiaFrequencia());
 			 			  
 			  novoEmpregado.salario();
 			  
@@ -32,7 +33,8 @@ public class EditarDetalhes {
 			  
 		  } else if (tipo == 2) {
 			  novoEmpregado = new Assalariado(listaEmpregados.get(i).getNumeroEmpregado(), listaEmpregados.get(i).getNome(), 
-					  listaEmpregados.get(i).getEndereco(), listaEmpregados.get(i).getMetodoPagamento(), listaEmpregados.get(i).getIsSindicato(), tipo);
+					  listaEmpregados.get(i).getEndereco(), listaEmpregados.get(i).getMetodoPagamento(), listaEmpregados.get(i).getIsSindicato(), 
+					  tipo, listaEmpregados.get(i).getTipoAgenda(), listaEmpregados.get(i).getDiaFrequencia());
 			  
 			  novoEmpregado.salario();
 			  
@@ -44,7 +46,8 @@ public class EditarDetalhes {
 			  
 		  } else if (tipo == 3) {
 			  novoEmpregado = new Comissionado(listaEmpregados.get(i).getNumeroEmpregado(), listaEmpregados.get(i).getNome(), 
-					  listaEmpregados.get(i).getEndereco(), listaEmpregados.get(i).getMetodoPagamento(), listaEmpregados.get(i).getIsSindicato(), tipo);
+					  listaEmpregados.get(i).getEndereco(), listaEmpregados.get(i).getMetodoPagamento(), listaEmpregados.get(i).getIsSindicato(), 
+					  tipo, listaEmpregados.get(i).getTipoAgenda(), listaEmpregados.get(i).getDiaFrequencia());
 			  
 			  novoEmpregado.salario();
 			  

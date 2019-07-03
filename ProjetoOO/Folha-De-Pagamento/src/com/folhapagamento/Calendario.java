@@ -9,6 +9,7 @@ public class Calendario {
 	
 	public void avancarDia() {
 		this.dia++;
+		this.diaSemana++;
 		this.semana = (dia / 7) + 1;
 		
 		if (diaSemana == 8) {

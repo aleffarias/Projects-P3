@@ -1,25 +1,21 @@
 package com.empregado;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Comissionado extends Empregado {
 	
 	Scanner input = new Scanner(System.in);
 	
-	public Comissionado(int numeroEmpregado, String nome, String endereco, int metodoPagamento, int isSindicato, int tipo) {
-		super(numeroEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo);
+	public Comissionado(int numeroEmpregado, String nome, String endereco, int metodoPagamento, int isSindicato, int tipo, String tipoAgenda, int diaSemana) {
+		super(numeroEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo, tipoAgenda, diaSemana);
 	}
-	
-	
-	// Agenda Padrão
-	private int frequencia = 2;
-	private int diaSemana = 5;
-	private String agenda = "Semanal - Padrão" + "	 Frequência: A cada " + this.frequencia + " semana(s)" + "	 Dia da semana: " + this.diaSemana;
 	
 	
 	// Salário
 	private double salarioComissionadoFixo;
 	private double salarioComissionadoLiq;
+	private double valorComissao;
 	private double comissao;
 	
 	@Override
@@ -36,6 +32,16 @@ public class Comissionado extends Empregado {
 		
 	}
 	
+	@Override
+	public void pagarEmpregado(ArrayList<Empregado> empregado, int index) {
+		this.salarioComissionadoLiq = salarioComissionadoFixo + valorComissao - getSindicato().getTaxaSindicall() - getSindicato().getValorTaxaServico();
+		System.out.println(empregado.get(index).toString() + "\n");
+		
+		this.salarioComissionadoLiq = 0;
+		this.valorComissao = 0;
+		
+	}
+	
 	public void resultadoVenda() {
 		System.out.println("\nDia da venda:");
 		int diaVenda = input.nextInt();
@@ -49,7 +55,7 @@ public class Comissionado extends Empregado {
 		System.out.print("\nValor da venda:\nExemplo: 1500 - 3000.56\nR$ "); 
 		double valorVenda = input.nextDouble();
 		
-		this.salarioComissionadoLiq = salarioComissionadoFixo + ((valorVenda * comissao)/100);
+		this.valorComissao =  (valorVenda * comissao)/100;
 		
 		System.out.println("\n==================================================================================");
 		System.out.println("Nome: " + getNome() + "		Número do empregado: " + getNumeroEmpregado());
@@ -59,32 +65,9 @@ public class Comissionado extends Empregado {
 		
 		System.out.println("\nResultado da venda registrado com sucesso!\n");
 	}
+
 	
 	//======================================= Get/Set =================================================
-	
-	public String getAgenda() {
-		return agenda;
-	}
-
-	public void setAgenda(String agenda) {
-		this.agenda = agenda;
-	}
-
-	public int getFrequencia() {
-		return frequencia;
-	}
-
-	public void setFrequencia(int frequencia) {
-		this.frequencia = frequencia;
-	}
-
-	public int getDiaSemana() {
-		return diaSemana;
-	}
-
-	public void setDiaSemana(int diaSemana) {
-		this.diaSemana = diaSemana;
-	}
 
 	public double getSalarioComissionadoFixo() {
 		return salarioComissionadoFixo;
@@ -106,12 +89,18 @@ public class Comissionado extends Empregado {
 		
 		string += "Tipo: Comissionado		Salário Bruto: R$ " + this.salarioComissionadoFixo + "	Comissão: " + this.comissao + "%";
 		string += "\n--------------------------------------------------------------------------------------------------------\n";
-		string += "Agenda de Pagamento: " + this.agenda;
+		string += "Agenda de Pagamento: " + getTipoAgenda() + "	Dia da semana: " + getDiaFrequencia();
 		string += "\n_________________________________________________________________________________________________________\n";
-		string += "Salário Líquido: R$ " + this.salarioComissionadoLiq;
+		
+		if (getIsSindicato() == 1) {
+			string += "Taxa Sindical ------------------------------------------------------------- (-) R$ " + getSindicato().getTaxaSindicall();
+			string += "\nTotal de Serviços --------------------------------------------------------- (-) R$ " + getSindicato().getValorTaxaServico();
+		}
+		
+		string += "\nComissão de vendas -------------------------------------------------------- (+) R$ " + this.valorComissao;
+		string += "\n\nSalário Líquido  -------------------------------------------------------------- R$ " + this.salarioComissionadoLiq;
 		
 		return string;
 	}
-
 	
 }

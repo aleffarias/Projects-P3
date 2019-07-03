@@ -15,6 +15,9 @@ public class Main {
 		
 		while (true) {
 			
+			int dia = calendario.getDia();
+			int diaSemana = calendario.getDiaSemana();
+			
 			menu();
 			
 			opcao = input.nextInt();
@@ -46,7 +49,7 @@ public class Main {
 				break;
 			
 			case 7:
-				
+				funcionalidades.rodarFolha(dia, diaSemana);
 				calendario.avancarDia();
 				break;
 			case 8:

@@ -10,6 +10,8 @@ import com.empregado.Horista;
 
 public class Agenda {
 	
+	private Scanner input;
+
 	public int searchEmpregado(ArrayList<Empregado> listaEmpregados, int nEmpregado){
 		int i;
 		
@@ -40,7 +42,7 @@ public class Agenda {
 	}
 	
 	public void novaAgenda(ArrayList<Empregado> listaEmpregados, int index) {
-		Scanner input = new Scanner(System.in);
+		input = new Scanner(System.in);
 		Empregado empregado = null;
 		
 		int tipo = listaEmpregados.get(index).getTipo();
@@ -49,10 +51,8 @@ public class Agenda {
 		System.out.println("\nEscolha uma opção:\n(1) - Mensal\n(2) - Semanal");
 		int opcao1 = input.nextInt();
 		input.nextLine();
-		
-		if (opcao1 == 1) {
 			
-		}
-		
 	}
+	
+	
 }

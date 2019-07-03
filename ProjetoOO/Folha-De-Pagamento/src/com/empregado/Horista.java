@@ -1,5 +1,6 @@
 package com.empregado;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Horista extends Empregado {
@@ -7,16 +8,12 @@ public class Horista extends Empregado {
 	Scanner input = new Scanner(System.in);
 	
 	
-	public Horista(int numeroEmpregado, String nome, String endereco, int metodoPagamento, int isSindicato, int tipo) {
-		super(numeroEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo);
+	public Horista(int numeroEmpregado, String nome, String endereco, int metodoPagamento, int isSindicato, int tipo, String tipoAgenda, int diaSemana) {
+		super(numeroEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo, tipoAgenda, diaSemana);
 	}
 	
-	// Agenda Padrão
-	private int frequencia = 1;
-	private int diaSemana = 5;
-	private String agenda = "Semanal - Padrão" + "	 Frequência: A cada " + this.frequencia + " semana(s)" + "	 Dia da semana: " + this.diaSemana;
-
 	// Salário
+	private double salarioHoristaLiq = 0;
 	private double salarioHorista = 0;
 	private double salarioHora = 0;
 	
@@ -28,6 +25,15 @@ public class Horista extends Empregado {
 		
 		this.salarioHora = salarioTemp;
 		
+	}
+	
+	@Override
+	public void pagarEmpregado(ArrayList<Empregado> empregado, int index) {
+		this.salarioHoristaLiq = salarioHorista - getSindicato().getTaxaSindicall() - getSindicato().getValorTaxaServico();
+		System.out.println(empregado.get(index).toString() + "\n");
+		
+		this.salarioHoristaLiq = 0;
+		this.salarioHorista = 0;
 	}
 	
 	public void cartaoPonto() {	
@@ -78,29 +84,6 @@ public class Horista extends Empregado {
 	
 	//======================================= Get/Set =================================================
 
-	public String getAgenda() {
-		return agenda;
-	}
-
-	public void setAgenda(String agenda) {
-		this.agenda = agenda;
-	}
-
-	public int getFrequencia() {
-		return frequencia;
-	}
-
-	public void setFrequencia(int frequencia) {
-		this.frequencia = frequencia;
-	}
-
-	public int getDiaSemana() {
-		return diaSemana;
-	}
-
-	public void setDiaSemana(int diaSemana) {
-		this.diaSemana = diaSemana;
-	}
 	
 	public double getSalarioHorista() {
 		return salarioHorista;
@@ -114,9 +97,16 @@ public class Horista extends Empregado {
 		
 		string += "Tipo: Horista		Salário Hora: R$ " + this.salarioHora;
 		string += "\n--------------------------------------------------------------------------------------------------------\n";
-		string += "Agenda de Pagamento: " + this.agenda;
+		string += "Agenda de Pagamento: " + this.getTipoAgenda() + "	Dia da semana: " + getDiaFrequencia();
 		string += "\n________________________________________________________________________________________________________\n";
-		string += "Salário Líquido: R$ " + salarioHorista;
+		
+		if (getIsSindicato() == 1) {
+			string += "Taxa Sindical ------------------------------------------------------------- (-) R$ " + getSindicato().getTaxaSindicall();
+			string += "\nTotal de Serviços --------------------------------------------------------- (-) R$ " + getSindicato().getValorTaxaServico();
+		}
+		
+		string += "\nSalário  Bruto Acumulado -------------------------------------------------- (+) R$ " + this.salarioHorista;
+		string += "\n\nSalário Líquido --------------------------------------------------------------- R$ " + this.salarioHoristaLiq;
 		
 		return string;
 	}
