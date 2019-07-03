@@ -3,6 +3,8 @@ package com.empregado;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.folhapagamento.TratamentoExc;
+
 public abstract class Empregado {
 	private int numeroEmpregado;
 	private String nome;
@@ -54,8 +56,7 @@ public abstract class Empregado {
 		
 		case 3:
 			System.out.println("\nMétodo de pagamento:\n(1) - Cheque pelos correios\n(2) - Cheque em mãos\n(3) - Depósito em conta bancária");
-			int metodoPagamento = input.nextInt();
-			input.nextLine();
+			int metodoPagamento = TratamentoExc.lerInt();
 			 
 			setMetodoPagamento(metodoPagamento);
 			
@@ -65,15 +66,13 @@ public abstract class Empregado {
 		
 		case 4:
 			System.out.println("\nPertence ao sindicato?\n(1) - Sim\n(0) - Não");
-			int isSindicato = input.nextInt();
-			input.nextLine();
+			int isSindicato = TratamentoExc.lerInt();
 			
 			setIsSindicato(isSindicato);
 			
 			if (isSindicato == 1) {
 			  System.out.print("Digite o valor da taxa sindical:\nR$ ");
-			  double taxaSindical = input.nextDouble();
-			  input.nextLine();
+			  double taxaSindical = TratamentoExc.lerDouble();
 			  
 			  sindicato.setNumeroSindicato(getNumeroEmpregado());
 			  sindicato.setTaxaSindical(taxaSindical);

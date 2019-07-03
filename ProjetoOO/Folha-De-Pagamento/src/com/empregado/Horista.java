@@ -1,12 +1,10 @@
 package com.empregado;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+
+import com.folhapagamento.TratamentoExc;
 
 public class Horista extends Empregado {
-	
-	Scanner input = new Scanner(System.in);
-	
 	
 	public Horista(int numeroEmpregado, String nome, String endereco, int metodoPagamento, int isSindicato, int tipo, String tipoAgenda, int diaSemana) {
 		super(numeroEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo, tipoAgenda, diaSemana);
@@ -19,10 +17,9 @@ public class Horista extends Empregado {
 	
 	@Override
 	public void salario() {
-		System.out.print("\nInforme o salário por hora trabalhada:\nExemplo: 1.5 - 3\nR$ ");
-		double salarioTemp = input.nextDouble();
-		input.nextLine();
-		
+		System.out.print("\nInforme o salário por hora trabalhada:\nExemplo: 1,5 - 3\nR$ ");
+		double salarioTemp = TratamentoExc.lerDouble();
+
 		this.salarioHora = salarioTemp;
 		
 	}
@@ -39,10 +36,10 @@ public class Horista extends Empregado {
 	public void cartaoPonto() {	
 		
 		System.out.println("\nHorário Entrada:\nDigite sem ':' Exemplo: 0703(07:03) - 1256(12:56)");
-		int cartaoPontoE = input.nextInt();
+		int cartaoPontoE = TratamentoExc.lerInt();
 		
 		System.out.println("\nHorário Saída:\nDigite sem ':' Exemplo: 0703(07:03) - 1256(12:56)");
-		int cartaoPontoS = input.nextInt();
+		int cartaoPontoS = TratamentoExc.lerInt();
 		
 		// Calcula o salário
 		this.salarioHorista = salarioHorista + (calculaSalario(salarioHora, cartaoPontoE, cartaoPontoS));
@@ -91,13 +88,22 @@ public class Horista extends Empregado {
 	
 	@Override
 	public String toString() {
-		String string;
+		String string, diaString = null;
 		
 		string = super.toString();
 		
 		string += "Tipo: Horista		Salário Hora: R$ " + this.salarioHora;
 		string += "\n--------------------------------------------------------------------------------------------------------\n";
-		string += "Agenda de Pagamento: " + this.getTipoAgenda() + "	Dia da semana: " + getDiaFrequencia();
+		
+		if (getDiaFrequencia() == 1) diaString = "Segunda";
+		else if (getDiaFrequencia() == 2) diaString = "Terça";
+		else if (getDiaFrequencia() == 3) diaString = "Quarta";
+		else if (getDiaFrequencia() == 4) diaString = "Quinta";
+		else if (getDiaFrequencia() == 5) diaString = "Sexta";
+		else if (getDiaFrequencia() == 6) diaString = "Sábado";
+		else if (getDiaFrequencia() == 7) diaString = "Domingo";
+		
+		string += "Agenda de Pagamento: " + this.getTipoAgenda() + "	Dia da semana: " + diaString;
 		string += "\n________________________________________________________________________________________________________\n";
 		
 		if (getIsSindicato() == 1) {

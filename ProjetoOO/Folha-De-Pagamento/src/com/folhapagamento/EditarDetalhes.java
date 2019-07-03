@@ -1,7 +1,6 @@
 package com.folhapagamento;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import com.empregado.Assalariado;
 import com.empregado.Comissionado;
@@ -10,14 +9,11 @@ import com.empregado.Horista;
 
 public class EditarDetalhes {
 	
-	static Scanner input = new Scanner(System.in);
-	
 	public static void alterarTipo(ArrayList<Empregado> listaEmpregados, int i) {
 		Empregado novoEmpregado = null;
 		
 		System.out.println("\nEscolha o tipo do empregado:\n(1) - Horista\n(2) - Assalariado\n(3) - Comissionado");
-		  int tipo = input.nextInt();
-		  input.nextLine();
+		  int tipo = TratamentoExc.lerInt();
 		  
 		  if (tipo == 1) {
 			  novoEmpregado = new Horista(listaEmpregados.get(i).getNumeroEmpregado(), listaEmpregados.get(i).getNome(), 

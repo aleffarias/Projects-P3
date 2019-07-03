@@ -27,22 +27,18 @@ public class Funcionalidades {
 		  String endereco = input.nextLine();
 		  
 		  System.out.println("\nMétodo de pagamento:\n(1) - Cheque pelos correios\n(2) - Cheque em mãos\n(3) - Depósito em conta bancária");
-		  int metodoPagamento = input.nextInt();
-		  input.nextLine();
+		  int metodoPagamento = TratamentoExc.lerInt();
 		  
 		  System.out.println("\nPertence ao sindicato?\n(1) - Sim\n(0) - Não");
-		  int isSindicato = input.nextInt();
-		  input.nextLine();
+		  int isSindicato = TratamentoExc.lerInt();
 		  
 		  if (isSindicato == 1) {
 			  System.out.print("Digite o valor da taxa sindical:\nR$ ");
-			  taxaSindical = input.nextDouble();
-			  input.nextLine();
+			  taxaSindical = TratamentoExc.lerDouble();
 		  }
 		  
 		  System.out.println("\nEscolha o tipo do empregado:\n(1) - Horista\n(2) - Assalariado\n(3) - Comissionado");
-		  int tipo = input.nextInt();
-		  input.nextLine();
+		  int tipo = TratamentoExc.lerInt();
 		  
 		  if (tipo == 1) {
 			  
@@ -59,7 +55,7 @@ public class Funcionalidades {
 			  listaEmpregados.add(horista);
 			  
 		  } else if (tipo == 2) {
-			  Assalariado assalariado = new Assalariado(numEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo, "Mensal", 30);
+			  Assalariado assalariado = new Assalariado(numEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo, "Mensal", 31);
 			  
 			  assalariado.salario();
 			  
@@ -97,9 +93,8 @@ public class Funcionalidades {
 	public void removerEmpregado() {
 		System.out.println("\n\t**  	REMOVER FUNCIONÁRIO  	**\n");
 		  
-		System.out.println("Digite o número do Empregado:\n");
-		int nEmpTemp = input.nextInt();
-		input.nextLine();
+		System.out.println("Digite o número do Empregado:");
+		int nEmpTemp = TratamentoExc.lerInt();
 		  
 		int index = agenda.searchEmpregado(listaEmpregados, nEmpTemp);
 		if (index == -1) return;
@@ -115,11 +110,9 @@ public class Funcionalidades {
 	public void lancarCartaoPonto() {
 		System.out.println("\n**  	LANÇAR CARTÃO DE PONTO  	**\n");	
 		System.out.println("Digite o número do Empregado:");
-		int nEmpTemp = input.nextInt();
-		input.nextLine();
+		int nEmpTemp = TratamentoExc.lerInt();
 		
 		int index = agenda.searchEmpregado(listaEmpregados, nEmpTemp);
-		
 		
 		try {
 			if (index == -1) return;
@@ -136,8 +129,7 @@ public class Funcionalidades {
 	public void lancarResultadoVenda() {
 		System.out.println("\n**  	LANÇAR RESULTADO DE VENDA  		**\n");
 		System.out.println("Digite o número do Empregado:");
-		int nEmpTemp = input.nextInt();
-		input.nextLine();
+		int nEmpTemp = TratamentoExc.lerInt();
 		 
 		int index = agenda.searchEmpregado(listaEmpregados, nEmpTemp);
 			
@@ -155,8 +147,7 @@ public class Funcionalidades {
 	public void lancarTaxaServico() {
 		System.out.println("\n**  	LANÇAR TAXA DE SERVIÇO  	**\n");
 		System.out.println("Digite o número do Empregado:");
-		int nEmpTemp = input.nextInt();
-		input.nextLine();
+		int nEmpTemp = TratamentoExc.lerInt();
 		
 		int index = agenda.searchEmpregado(listaEmpregados, nEmpTemp);
 		if (index == -1) return;
@@ -172,9 +163,8 @@ public class Funcionalidades {
 	 
 	public void alterarDetalhe() {
 		System.out.println("\n**  	ALTERAR DETALHES DO EMPREGADO  	**\n");
-		System.out.println("Digite o número do Funcionário:");
-		int nEmpTemp = input.nextInt();
-		input.nextLine();
+		System.out.println("Digite o número do Empregado:");
+		int nEmpTemp = TratamentoExc.lerInt();
 		
 		int index = agenda.searchEmpregado(listaEmpregados, nEmpTemp);
 		if (index == -1) return;
@@ -186,8 +176,7 @@ public class Funcionalidades {
 		System.out.println("(4) - Alterar Sindicato");
 		System.out.println("(5) - Alterar Tipo");
 				
-		int opcao = input.nextInt();
-		input.nextLine();
+		int opcao = TratamentoExc.lerInt();
 				
 		if (opcao <=4 & opcao > 0) {		
 			listaEmpregados.get(index).alterarDetalhes(opcao);
@@ -201,9 +190,9 @@ public class Funcionalidades {
 		
 	}
 	
-	public void rodarFolha(int dia, int diaSemana) {
+	public void rodarFolha(int dia, int diaSemana, int semana, int ultimo) {
 		System.out.println("\n**  	RODAR A FOLHA DE PAGAMENTO  	**\n");
-		System.out.println("Verificando Empregados...");
+		System.out.println("Verificando Empregados...\n");
 			
 		for (int i=0; i < listaEmpregados.size(); i++) {
 	
@@ -211,22 +200,30 @@ public class Funcionalidades {
 				
 				listaEmpregados.get(i).pagarEmpregado(listaEmpregados, i);
 				
-			} else if ((listaEmpregados.get(i).getTipoAgenda() == "2 - Semanal") && (listaEmpregados.get(i).getDiaFrequencia() == diaSemana)) {
+			} else if ((listaEmpregados.get(i).getTipoAgenda() == "2 - Semanal") && (listaEmpregados.get(i).getDiaFrequencia() == diaSemana)
+					&& (semana == 2 || semana == 4)) {
 				
 				listaEmpregados.get(i).pagarEmpregado(listaEmpregados, i);
 				
-			} else if ((listaEmpregados.get(i).getTipoAgenda() == "3 - Semanal") && (listaEmpregados.get(i).getDiaFrequencia() == diaSemana)) {
+			} else if ((listaEmpregados.get(i).getTipoAgenda() == "3 - Semanal") && (listaEmpregados.get(i).getDiaFrequencia() == diaSemana) 
+					&& (semana == 3)) {
 				
 				listaEmpregados.get(i).pagarEmpregado(listaEmpregados, i);
 				
-			} else if ((listaEmpregados.get(i).getTipoAgenda() == "Mensal") && (listaEmpregados.get(i).getDiaFrequencia() == dia)) {
+			} else if (listaEmpregados.get(i).getTipoAgenda() == "Mensal") {
 				
-				listaEmpregados.get(i).pagarEmpregado(listaEmpregados, i);
-		
+				if (listaEmpregados.get(i).getDiaFrequencia() == 28 || listaEmpregados.get(i).getDiaFrequencia() == 30 
+					|| listaEmpregados.get(i).getDiaFrequencia() == 31) { // Verifica se o dia na agenda não foi alterado
+				
+					listaEmpregados.get(i).setDiaFrequencia(ultimo);
+				}
+				
+				if (listaEmpregados.get(i).getDiaFrequencia() == dia) {
+					listaEmpregados.get(i).pagarEmpregado(listaEmpregados, i);	
+					
+				}
 			}
 		}
-		
-		System.out.println("Verificando Empregados...");
 		
 	}
 		
@@ -240,9 +237,8 @@ public class Funcionalidades {
 	
 	public void novaAgenda() {
 		System.out.println("\n**  	CRIAR AGENDA DE PAGAMENTO 	**\n");
-		System.out.println("Digite o número do Funcionário:");
-		int nEmpTemp = input.nextInt();
-		input.nextLine();
+		System.out.println("Digite o número do Empregado:");
+		int nEmpTemp = TratamentoExc.lerInt();
 		
 		int index = agenda.searchEmpregado(listaEmpregados, nEmpTemp);
 		if (index == -1) return;

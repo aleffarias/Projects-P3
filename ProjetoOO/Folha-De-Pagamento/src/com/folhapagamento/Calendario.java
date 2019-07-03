@@ -6,6 +6,7 @@ public class Calendario {
 	private int semana = 1;
 	private int mes = 1;
 	private int ano = 2019;
+	private String diaString = "Segunda";
 	
 	public void avancarDia() {
 		this.dia++;
@@ -41,12 +42,36 @@ public class Calendario {
 				this.semana = 1;
 				this.mes++;
 			}
-		}	
+		}
+		
+		if (diaSemana == 1) diaString = "Segunda";
+		else if (diaSemana == 2) diaString = "Terça";
+		else if (diaSemana == 3) diaString = "Quarta";
+		else if (diaSemana == 4) diaString = "Quinta";
+		else if (diaSemana == 5) diaString = "Sexta";
+		else if (diaSemana == 6) diaString = "Sábado";
+		else if (diaSemana == 7) diaString = "Domingo";
+		
+	}
+	
+	public int ultimoDia(int mes) {
+		int ultimo = 0;
+		
+		if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12) {
+			ultimo = 31;
+		} else if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+			ultimo = 30;
+		} else if (mes == 2) {
+			ultimo = 28;
+		}
+		
+		return ultimo;
 	}
 	
 	@Override
 	public String toString() {
-		return "Dia: " + this.dia + " Mês: " + this.mes + " Ano: " + this.ano;
+			
+		return this.diaString + " - Dia: " + this.dia + " Mês: " + this.mes + " Ano: " + this.ano;
 	}
 	
 	//======================================= Get/Set =================================================

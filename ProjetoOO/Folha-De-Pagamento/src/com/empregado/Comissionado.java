@@ -1,11 +1,10 @@
 package com.empregado;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+
+import com.folhapagamento.TratamentoExc;
 
 public class Comissionado extends Empregado {
-	
-	Scanner input = new Scanner(System.in);
 	
 	public Comissionado(int numeroEmpregado, String nome, String endereco, int metodoPagamento, int isSindicato, int tipo, String tipoAgenda, int diaSemana) {
 		super(numeroEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo, tipoAgenda, diaSemana);
@@ -20,13 +19,11 @@ public class Comissionado extends Empregado {
 	
 	@Override
 	public void salario() {
-		System.out.print("\nInforme o salário:\nExemplo: 1500 - 3000.56\nR$ ");
-		double salarioTemp = input.nextDouble();
-		input.nextLine();
-		
+		System.out.print("\nInforme o salário:\nExemplo: 1500 - 3000,56\nR$ ");
+		double salarioTemp = TratamentoExc.lerDouble();
+
 		System.out.println("\nInforme o percentual de comissão:\nExemplo: 15 para 15% 1.5 para 1.5%");
-		this.comissao = input.nextDouble();
-		input.nextLine();
+		this.comissao = TratamentoExc.lerDouble();
 		
 		this.salarioComissionadoFixo = salarioTemp;
 		
@@ -44,20 +41,20 @@ public class Comissionado extends Empregado {
 	
 	public void resultadoVenda() {
 		System.out.println("\nDia da venda:");
-		int diaVenda = input.nextInt();
+		int diaVenda = TratamentoExc.lerInt();
 		
 		System.out.println("\nMês da venda:");
-		int mesVenda = input.nextInt();
+		int mesVenda = TratamentoExc.lerInt();
 		
 		System.out.println("\nAno da venda:");
-		int anoVenda = input.nextInt();
+		int anoVenda = TratamentoExc.lerInt();
 		
 		System.out.print("\nValor da venda:\nExemplo: 1500 - 3000.56\nR$ "); 
-		double valorVenda = input.nextDouble();
+		double valorVenda = TratamentoExc.lerDouble();
 		
 		this.valorComissao =  (valorVenda * comissao)/100;
 		
-		System.out.println("\n==================================================================================");
+		System.out.println("\n===============================Registro de Venda=================================");
 		System.out.println("Nome: " + getNome() + "		Número do empregado: " + getNumeroEmpregado());
 		System.out.println("----------------------------------------------------------------------------------");
 		System.out.println("Data da venda: " + diaVenda + "/ " + mesVenda + "/" + anoVenda + "		Valor da comissão: R$ " + ((valorVenda * comissao)/100));
@@ -83,13 +80,22 @@ public class Comissionado extends Empregado {
 	
 	@Override
 	public String toString() {
-		String string;
+		String string, diaString = null;
 		
 		string = super.toString();
 		
 		string += "Tipo: Comissionado		Salário Bruto: R$ " + this.salarioComissionadoFixo + "	Comissão: " + this.comissao + "%";
 		string += "\n--------------------------------------------------------------------------------------------------------\n";
-		string += "Agenda de Pagamento: " + getTipoAgenda() + "	Dia da semana: " + getDiaFrequencia();
+		
+		if (getDiaFrequencia() == 1) diaString = "Segunda";
+		else if (getDiaFrequencia() == 2) diaString = "Terça";
+		else if (getDiaFrequencia() == 3) diaString = "Quarta";
+		else if (getDiaFrequencia() == 4) diaString = "Quinta";
+		else if (getDiaFrequencia() == 5) diaString = "Sexta";
+		else if (getDiaFrequencia() == 6) diaString = "Sábado";
+		else if (getDiaFrequencia() == 7) diaString = "Domingo";
+		
+		string += "Agenda de Pagamento: " + getTipoAgenda() + "	Dia da semana: " + diaString;
 		string += "\n_________________________________________________________________________________________________________\n";
 		
 		if (getIsSindicato() == 1) {
