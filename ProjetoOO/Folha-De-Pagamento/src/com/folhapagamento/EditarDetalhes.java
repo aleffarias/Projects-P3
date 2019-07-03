@@ -18,7 +18,7 @@ public class EditarDetalhes {
 		  if (tipo == 1) {
 			  novoEmpregado = new Horista(listaEmpregados.get(i).getNumeroEmpregado(), listaEmpregados.get(i).getNome(), 
 					  listaEmpregados.get(i).getEndereco(), listaEmpregados.get(i).getMetodoPagamento(), listaEmpregados.get(i).getIsSindicato(), 
-					  tipo, listaEmpregados.get(i).getTipoAgenda(), listaEmpregados.get(i).getDiaFrequencia());
+					  tipo, "1 - Semanal", 5);
 			 			  
 			  novoEmpregado.salario();
 			  
@@ -30,7 +30,7 @@ public class EditarDetalhes {
 		  } else if (tipo == 2) {
 			  novoEmpregado = new Assalariado(listaEmpregados.get(i).getNumeroEmpregado(), listaEmpregados.get(i).getNome(), 
 					  listaEmpregados.get(i).getEndereco(), listaEmpregados.get(i).getMetodoPagamento(), listaEmpregados.get(i).getIsSindicato(), 
-					  tipo, listaEmpregados.get(i).getTipoAgenda(), listaEmpregados.get(i).getDiaFrequencia());
+					  tipo, "Mensal", 30);
 			  
 			  novoEmpregado.salario();
 			  
@@ -43,7 +43,7 @@ public class EditarDetalhes {
 		  } else if (tipo == 3) {
 			  novoEmpregado = new Comissionado(listaEmpregados.get(i).getNumeroEmpregado(), listaEmpregados.get(i).getNome(), 
 					  listaEmpregados.get(i).getEndereco(), listaEmpregados.get(i).getMetodoPagamento(), listaEmpregados.get(i).getIsSindicato(), 
-					  tipo, listaEmpregados.get(i).getTipoAgenda(), listaEmpregados.get(i).getDiaFrequencia());
+					  tipo, "2 - Semanal", 5);
 			  
 			  novoEmpregado.salario();
 			  
