@@ -21,6 +21,7 @@ public class Menu {
 		System.out.println("(9) - Agenda de Pagamento");
 		System.out.println("(10) - Criação de Novas Agendas de Pagamento");
 		System.out.println("(0) - Sair");
+		System.out.println("=======================================================================================");
 		
 		return TratamentoExc.lerInt();
 		
