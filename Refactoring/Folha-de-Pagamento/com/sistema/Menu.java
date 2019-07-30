@@ -4,6 +4,70 @@ public class Menu {
 	
 	static Calendario calendario = new Calendario(1, 1, 2019);
 	
+	public static void menuMain() {
+		
+		int dia = calendario.getDia();
+		int diaSemana = calendario.getDiaSemana();
+		int semana = calendario.getSemana();
+		int mes = calendario.getMes();
+		int ano = calendario.getAno();
+		int ultimo = calendario.ultimoDia(mes);
+		
+		Funcionalidades funcionalidades = new Funcionalidades();
+		int opcao = printMenu();
+		
+		switch(opcao) {
+		case 1:
+			funcionalidades.addEmpregado();
+			break;
+			
+		case 2:
+			funcionalidades.removerEmpregado();
+			break;
+			
+		case 3:
+			funcionalidades.lancarCartaoPonto();
+			break;
+			
+		case 4:
+			funcionalidades.lancarResultadoVenda();
+			break;
+		
+		case 5:
+			funcionalidades.lancarTaxaServico();
+			break;
+		
+		case 6:	
+			funcionalidades.alterarDetalhe();
+			break;
+		
+		case 7:
+			funcionalidades.rodarFolha(dia, diaSemana, semana, ultimo);
+			calendario.avancarDia();
+			
+			System.out.println("\nData: " + dia + "/ " + mes + " / " + ano + " -  Folha de pagamento executada com sucesso!\n");
+			break;
+			
+		case 8:
+			
+			break;
+		
+		case 9:
+			funcionalidades.agendaPagamento();
+			break;
+		
+		case 10:
+			funcionalidades.novaAgenda();
+			break;
+			
+		case 0:
+			System.exit(0);
+		
+		default:
+			System.out.println("\nErro: Opção Inválida.\n");
+		}
+	}
+	
 	public static int printMenu() {
 		System.out.println("=============================== FOLHA DE PAGAMENTO =====================================");
 		
@@ -24,7 +88,5 @@ public class Menu {
 		System.out.println("=======================================================================================");
 		
 		return TratamentoExc.lerInt();
-		
 	}
-
 }
