@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 import com.sistema.TratamentoExc;
 
-public class Comissionado extends Empregado {
+public class Comissionado extends Empregado implements Salario {
 	
-	public Comissionado(int numeroEmpregado, String nome, String endereco, int metodoPagamento, int isSindicato, int tipo, String tipoAgenda, int diaSemana) {
+	public Comissionado(int numeroEmpregado, String nome, String endereco, int metodoPagamento, 
+						int isSindicato, int tipo, String tipoAgenda, int diaSemana) {
 		super(numeroEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo, tipoAgenda, diaSemana);
 	}
 	
@@ -18,7 +19,7 @@ public class Comissionado extends Empregado {
 	private double comissao;
 	
 	@Override
-	public void salario() {
+	public void entradaSalario() {
 		System.out.print("\nInforme o salário:\nExemplo: 1500 - 3000,56\nR$ ");
 		double salarioTemp = TratamentoExc.lerDouble();
 

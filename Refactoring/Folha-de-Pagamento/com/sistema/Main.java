@@ -3,9 +3,10 @@ package com.sistema;
 public class Main {
 
 	public static void main(String[] args) {
-				
+		Menu menu = new Menu();		
+		
 		while (true) {
-			Menu.menuMain();		
+			menu.menuMain();		
 		}
 	}
 }

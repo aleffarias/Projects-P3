@@ -2,9 +2,11 @@ package com.sistema;
 
 public class Menu {
 	
-	static Calendario calendario = new Calendario(1, 1, 2019);
+	private static Calendario calendario = new Calendario(1, 1, 2019);
 	
-	public static void menuMain() {
+	public void menuMain() {
+		
+		FolhaPagamentoFacade folhaPagamento = new FolhaPagamentoFacade();
 		
 		int dia = calendario.getDia();
 		int diaSemana = calendario.getDiaSemana();
@@ -13,36 +15,36 @@ public class Menu {
 		int ano = calendario.getAno();
 		int ultimo = calendario.ultimoDia(mes);
 		
-		Funcionalidades funcionalidades = new Funcionalidades();
+		
 		int opcao = printMenu();
 		
 		switch(opcao) {
 		case 1:
-			funcionalidades.addEmpregado();
+			folhaPagamento.adicionar();
 			break;
 			
 		case 2:
-			funcionalidades.removerEmpregado();
+			folhaPagamento.remover();
 			break;
 			
 		case 3:
-			funcionalidades.lancarCartaoPonto();
+			
 			break;
 			
 		case 4:
-			funcionalidades.lancarResultadoVenda();
+			
 			break;
 		
 		case 5:
-			funcionalidades.lancarTaxaServico();
+			
 			break;
 		
 		case 6:	
-			funcionalidades.alterarDetalhe();
+			
 			break;
 		
 		case 7:
-			funcionalidades.rodarFolha(dia, diaSemana, semana, ultimo);
+			
 			calendario.avancarDia();
 			
 			System.out.println("\nData: " + dia + "/ " + mes + " / " + ano + " -  Folha de pagamento executada com sucesso!\n");
@@ -53,11 +55,11 @@ public class Menu {
 			break;
 		
 		case 9:
-			funcionalidades.agendaPagamento();
+			
 			break;
 		
 		case 10:
-			funcionalidades.novaAgenda();
+			
 			break;
 			
 		case 0:

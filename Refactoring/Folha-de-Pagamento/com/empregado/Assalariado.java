@@ -4,10 +4,11 @@ import java.util.ArrayList;
 
 import com.sistema.TratamentoExc;
 
-public class Assalariado extends Empregado {
+public class Assalariado extends Empregado implements Salario {
 	
 	// Construtor 
-	public Assalariado(int numeroEmpregado, String nome, String endereco, int metodoPagamento, int isSindicato, int tipo, String tipoAgenda, int diaSemana) {
+	public Assalariado(int numeroEmpregado, String nome, String endereco, int metodoPagamento, 
+						int isSindicato, int tipo, String tipoAgenda, int diaSemana) {
 		super(numeroEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo, tipoAgenda, diaSemana);
 	}
 
@@ -17,7 +18,7 @@ public class Assalariado extends Empregado {
 	
 	
 	@Override
-	public void salario() {
+	public void entradaSalario() {
 		System.out.print("\nInforme o salário fixo mensal:\nExemplo: 1500 - 3000,56\nR$ ");
 		double salarioTemp =TratamentoExc.lerDouble();
 		

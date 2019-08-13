@@ -4,19 +4,20 @@ import java.util.ArrayList;
 
 import com.sistema.TratamentoExc;
 
-public class Horista extends Empregado {
+public class Horista extends Empregado implements Salario {
 	
-	public Horista(int numeroEmpregado, String nome, String endereco, int metodoPagamento, int isSindicato, int tipo, String tipoAgenda, int diaSemana) {
+	public Horista(int numeroEmpregado, String nome, String endereco, int metodoPagamento, 
+					int isSindicato, int tipo, String tipoAgenda, int diaSemana) {
 		super(numeroEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo, tipoAgenda, diaSemana);
 	}
 	
-	// Salário
+
 	private double salarioHoristaLiq = 0;
 	private double salarioHorista = 0;
 	private double salarioHora = 0;
 	
 	@Override
-	public void salario() {
+	public void entradaSalario() {
 		System.out.print("\nInforme o salário por hora trabalhada:\nExemplo: 1,5 - 3\nR$ ");
 		double salarioTemp = TratamentoExc.lerDouble();
 
@@ -26,7 +27,8 @@ public class Horista extends Empregado {
 	
 	@Override
 	public void pagarEmpregado(ArrayList<Empregado> empregado, int index) {
-		this.salarioHoristaLiq = salarioHorista - getSindicato().getTaxaSindicall() - getSindicato().getValorTaxaServico();
+		this.salarioHoristaLiq = salarioHorista - getSindicato().getTaxaSindicall() 
+									- getSindicato().getValorTaxaServico();
 		System.out.println(empregado.get(index).toString() + "\n");
 		
 		this.salarioHoristaLiq = 0;
@@ -48,6 +50,7 @@ public class Horista extends Empregado {
 	}
 	
 	// Calcula o salário de acordo com o cartão ponto
+	
 	public static double calculaSalario(double salarioHora, int entrada, int saida) {
 		double salario;
 		

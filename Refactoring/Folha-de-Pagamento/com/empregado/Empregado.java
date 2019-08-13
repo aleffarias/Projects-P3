@@ -1,26 +1,17 @@
 package com.empregado;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.empresa.Sindicato;
 import com.sistema.TratamentoExc;
 
-public abstract class Empregado {
+public class Empregado {
 	private int numeroEmpregado;
 	private String nome;
 	private String endereco;
 	private int tipo;
 	private int metodoPagamento;
 	private int isSindicato = 0;
-	
-	// Agenda
-	private String tipoAgenda;
-	private int diaFrequencia;
-
-	Sindicato sindicato = new Sindicato();
-	
-	static Scanner input = new Scanner(System.in);
 	
 	public Empregado(int numeroEmpregado, String nome, String endereco, int metodoPagamento, int isSindicato, int tipo, String tipoAgenda, int diaSemana) {
 		this.numeroEmpregado = numeroEmpregado;
@@ -32,6 +23,15 @@ public abstract class Empregado {
 		this.tipoAgenda = tipoAgenda;
 		this.diaFrequencia = diaSemana;
 	}
+	
+	// Agenda
+	private String tipoAgenda;
+	private int diaFrequencia;
+
+	Sindicato sindicato = new Sindicato();
+	
+	static Scanner input = new Scanner(System.in);
+
 	
 	public void alterarDetalhes(int opcao) {
 		switch(opcao) {
@@ -87,9 +87,6 @@ public abstract class Empregado {
 		}
 	}
 	
-	
-	public abstract void salario();
-	public abstract void pagarEmpregado(ArrayList<Empregado> empregado, int index);
 
 	
 	//======================================= Get/Set =================================================
@@ -201,5 +198,6 @@ public abstract class Empregado {
 	public void setDiaFrequencia(int diaFrequencia) {
 		this.diaFrequencia = diaFrequencia;
 	}
+
 	
 }
