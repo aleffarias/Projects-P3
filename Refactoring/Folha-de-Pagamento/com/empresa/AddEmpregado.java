@@ -19,7 +19,6 @@ public class AddEmpregado {
 	
 	Scanner input = new Scanner(System.in);
 
-	
 	public void add(BancoDados bancoDados) {
 		
 		double taxaSindical = 0.0;

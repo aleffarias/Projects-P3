@@ -28,11 +28,11 @@ public class Menu {
 			break;
 			
 		case 3:
-			
+			folhaPagamento.cartaoPonto();
 			break;
 			
 		case 4:
-			
+			folhaPagamento.resultadoVenda();
 			break;
 		
 		case 5:

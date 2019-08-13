@@ -22,4 +22,8 @@ public class FolhaPagamentoFacade {
 	public void cartaoPonto() {
 		
 	}
+	
+	public void resultadoVenda() {
+			
+		}
 }
