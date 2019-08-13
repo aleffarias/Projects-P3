@@ -46,7 +46,7 @@ public class Funcionalidades {
 			  
 			  Horista horista = new Horista(numEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo, "1 - Semanal", 5);
 			 
-			  horista.salario();
+			  horista.entradaSalario();
 			  
 			  if (isSindicato == 1) {
 				  horista.getSindicato().setNumeroSindicato(numeroSindicato);
@@ -59,7 +59,7 @@ public class Funcionalidades {
 		  } else if (tipo == 2) {
 			  Assalariado assalariado = new Assalariado(numEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo, "Mensal", 31);
 			  
-			  assalariado.salario();
+			  assalariado.entradaSalario();
 			  
 			  if (isSindicato == 1) {
 				  assalariado.getSindicato().setNumeroSindicato(numeroSindicato);
@@ -72,7 +72,7 @@ public class Funcionalidades {
 		  } else if (tipo == 3) {
 			  Comissionado comissionado = new Comissionado(numEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo, "2 - Semanal", 5);
 			  
-			  comissionado.salario();
+			  comissionado.entradaSalario();
 			  
 			  if (isSindicato == 1) {
 				  comissionado.getSindicato().setNumeroSindicato(numeroSindicato);

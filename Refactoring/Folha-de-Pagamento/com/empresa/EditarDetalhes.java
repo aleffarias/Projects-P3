@@ -10,6 +10,8 @@ import com.sistema.TratamentoExc;
 
 public class EditarDetalhes {
 	
+	// PADRÃO FACADE
+	
 	public static void alterarTipo(ArrayList<Empregado> listaEmpregados, int i) {
 		Empregado novoEmpregado = null;
 		
