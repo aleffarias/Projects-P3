@@ -39,6 +39,8 @@ public class BancoDados {
 		System.out.println("\nEmpregado removido com sucesso!\n");
 	}
 	
+	//======================================= Get/Set =================================================
+	
 	public ArrayList<Empregado> getListaEmpregados() {
 		return listaEmpregados;
 	}
