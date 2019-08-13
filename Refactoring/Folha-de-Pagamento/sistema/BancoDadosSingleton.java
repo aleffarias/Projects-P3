@@ -1,13 +1,23 @@
-package com.sistema;
+package sistema;
 
 import java.util.ArrayList;
 
-import com.empregado.Empregado;
+import empregado.Empregado;
 
-public class BancoDados {
+public class BancoDadosSingleton {
 	
-	static private ArrayList<Empregado> listaEmpregados = new ArrayList<Empregado>();
-
+	private static BancoDadosSingleton uniqueInstance;
+	private BancoDadosSingleton() {	}
+	
+	private ArrayList<Empregado> listaEmpregados = new ArrayList<Empregado>();
+	
+	public static synchronized BancoDadosSingleton getInstance() {
+		if (uniqueInstance == null)
+			uniqueInstance = new BancoDadosSingleton();
+		
+		return uniqueInstance;
+	}
+	
 	public int searchEmpregado(int nEmpregado){
 		int i;
 		
@@ -46,7 +56,7 @@ public class BancoDados {
 	}
 
 	public void setListaEmpregados(Empregado empregado) {
-		BancoDados.listaEmpregados.add(empregado);
+		this.listaEmpregados.add(empregado);
 	}
 	
 }

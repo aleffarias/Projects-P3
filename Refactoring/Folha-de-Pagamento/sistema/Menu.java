@@ -1,8 +1,8 @@
-package com.sistema;
+package sistema;
 
 public class Menu {
 	
-	private static Calendario calendario = new Calendario(1, 1, 2019);
+	private CalendarioSingleton calendario = CalendarioSingleton.getInstance();
 	
 	public void menuMain() {
 		
@@ -70,7 +70,7 @@ public class Menu {
 		}
 	}
 	
-	public static int printMenu() {
+	public int printMenu() {
 		System.out.println("=============================== FOLHA DE PAGAMENTO =====================================");
 		
 		System.out.println(calendario.toString());
