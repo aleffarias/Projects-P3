@@ -1,18 +1,18 @@
-package com.sistema;
+package sistema;
 
-import com.empresa.AddEmpregado;
+import empresa.AddEmpregado;
 
 public class FolhaPagamentoFacade {
-	private BancoDados bancoDados;
+	private BancoDadosSingleton bancoDados;
 	private AddEmpregado addEmpregado;
 	
 	public FolhaPagamentoFacade() {
-		this.bancoDados = new BancoDados();
+		this.bancoDados = BancoDadosSingleton.getInstance();
 		this.addEmpregado = new AddEmpregado();
 	}
 	
 	public void adicionar() {
-		addEmpregado.add(bancoDados);
+		addEmpregado.add();
 	}
 	
 	public void remover() {
