@@ -1,6 +1,16 @@
-package com.sistema;
+package sistema;
 
-public class Calendario {
+public class CalendarioSingleton {
+	
+	private static CalendarioSingleton uniqueInstance;
+	
+	public static synchronized CalendarioSingleton getInstance() {
+		if (uniqueInstance == null)
+			uniqueInstance = new CalendarioSingleton();
+		
+		return uniqueInstance;
+	}
+	
 	private int diaSemana;
 	private int dia ;
 	private int semana;
@@ -8,10 +18,10 @@ public class Calendario {
 	private int ano;
 	private String diaString;
 	
-	public Calendario(int dia, int mes, int ano) {
-		this.dia = dia;
-		this.mes = mes;
-		this.ano = ano;
+	private CalendarioSingleton() {
+		this.dia = 1;
+		this.mes = 1;
+		this.ano = 2019;
 		this.diaSemana = 1;
 		this.semana = 1;
 		this.diaString = "Segunda";
