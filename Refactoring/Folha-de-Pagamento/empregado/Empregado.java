@@ -1,9 +1,9 @@
-package com.empregado;
+package empregado;
 
 import java.util.Scanner;
 
-import com.empresa.Sindicato;
-import com.sistema.TratamentoExc;
+import empresa.Sindicato;
+import sistema.TratamentoExc;
 
 public class Empregado {
 	private int numeroEmpregado;
@@ -12,6 +12,10 @@ public class Empregado {
 	private int tipo;
 	private int metodoPagamento;
 	private int isSindicato = 0;
+	private String tipoAgenda;
+	private int diaFrequencia;
+	
+	Sindicato sindicato = new Sindicato();
 	
 	public Empregado(int numeroEmpregado, String nome, String endereco, int metodoPagamento, int isSindicato, int tipo, String tipoAgenda, int diaSemana) {
 		this.numeroEmpregado = numeroEmpregado;
@@ -24,15 +28,8 @@ public class Empregado {
 		this.diaFrequencia = diaSemana;
 	}
 	
-	// Agenda
-	private String tipoAgenda;
-	private int diaFrequencia;
+	Scanner input = new Scanner(System.in);
 
-	Sindicato sindicato = new Sindicato();
-	
-	static Scanner input = new Scanner(System.in);
-
-	
 	public void alterarDetalhes(int opcao) {
 		switch(opcao) {
 		case 1:
@@ -87,7 +84,6 @@ public class Empregado {
 		}
 	}
 	
-
 	
 	//======================================= Get/Set =================================================
 	
@@ -97,8 +93,7 @@ public class Empregado {
 	
 	public void setNumeroEmpregado(int numeroEmpregado) {
 		this.numeroEmpregado = numeroEmpregado;
-	}
-	
+	}	
 	
 	public String getNome() {
 		return this.nome;
@@ -108,7 +103,6 @@ public class Empregado {
 		this.nome = nome;
 	}
 	
-	
 	public String getEndereco() {
 		return this.endereco;
 	}
@@ -116,8 +110,7 @@ public class Empregado {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	
-	
+		
 	public int getTipo() {
 		return this.tipo;
 	}
@@ -126,7 +119,6 @@ public class Empregado {
 		this.tipo = tipo;
 	}
 	
-	
 	public int getMetodoPagamento() {
 		return this.metodoPagamento;
 	}
@@ -134,8 +126,7 @@ public class Empregado {
 	public void setMetodoPagamento(int metodoPagamento) {
 		this.metodoPagamento = metodoPagamento;
 	}
-	
-	
+		
 	public int getIsSindicato() {
 		return this.isSindicato;
 	}
@@ -143,14 +134,29 @@ public class Empregado {
 	public void setIsSindicato(int isSindicato) {
 		this.isSindicato = isSindicato;
 	}
-	
-	
+		
 	public Sindicato getSindicato() {
 		return sindicato;
 	}
 
 	public void setSindicato(Sindicato sindicato) {
 		this.sindicato = sindicato;
+	}
+
+	public String getTipoAgenda() {
+		return tipoAgenda;
+	}
+
+	public void setTipoAgenda(String tipoAgenda) {
+		this.tipoAgenda = tipoAgenda;
+	}
+
+	public int getDiaFrequencia() {
+		return diaFrequencia;
+	}
+
+	public void setDiaFrequencia(int diaFrequencia) {
+		this.diaFrequencia = diaFrequencia;
 	}
 	
 	@Override
@@ -182,22 +188,5 @@ public class Empregado {
 		
 		return string;
 	}
-
-	public String getTipoAgenda() {
-		return tipoAgenda;
-	}
-
-	public void setTipoAgenda(String tipoAgenda) {
-		this.tipoAgenda = tipoAgenda;
-	}
-
-	public int getDiaFrequencia() {
-		return diaFrequencia;
-	}
-
-	public void setDiaFrequencia(int diaFrequencia) {
-		this.diaFrequencia = diaFrequencia;
-	}
-
 	
 }

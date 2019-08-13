@@ -1,15 +1,16 @@
-package com.empresa;
+package empresa;
 
 import java.util.Scanner;
 
-import com.empregado.Assalariado;
-import com.empregado.Comissionado;
-import com.empregado.Horista;
-import com.sistema.BancoDados;
-import com.sistema.TratamentoExc;
+import empregado.Assalariado;
+import empregado.Comissionado;
+import empregado.Horista;
+import sistema.BancoDadosSingleton;
+import sistema.TratamentoExc;
 
 public class AddEmpregado {
 	
+	private BancoDadosSingleton bancoDados;
 	private Horista horista;
 	private Assalariado assalariado;
 	private Comissionado comissionado;
@@ -19,8 +20,9 @@ public class AddEmpregado {
 	
 	Scanner input = new Scanner(System.in);
 
-	public void add(BancoDados bancoDados) {
+	public void add() {
 		
+		bancoDados = BancoDadosSingleton.getInstance();
 		double taxaSindical = 0.0;
 		
 		System.out.println("\n**  ADICIONAR EMPREGADO  **\n");

@@ -1,4 +1,4 @@
-package com.sistema;
+package sistema;
 
 public class Main {
 

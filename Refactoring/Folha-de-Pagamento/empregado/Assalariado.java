@@ -1,12 +1,11 @@
-package com.empregado;
+package empregado;
 
 import java.util.ArrayList;
 
-import com.sistema.TratamentoExc;
+import sistema.TratamentoExc;
 
 public class Assalariado extends Empregado implements Salario {
 	
-	// Construtor 
 	public Assalariado(int numeroEmpregado, String nome, String endereco, int metodoPagamento, 
 						int isSindicato, int tipo, String tipoAgenda, int diaSemana) {
 		super(numeroEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo, tipoAgenda, diaSemana);

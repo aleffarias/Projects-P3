@@ -1,8 +1,8 @@
-package com.empregado;
+package empregado;
 
 import java.util.ArrayList;
 
-import com.sistema.TratamentoExc;
+import sistema.TratamentoExc;
 
 public class Horista extends Empregado implements Salario {
 	
@@ -11,7 +11,6 @@ public class Horista extends Empregado implements Salario {
 		super(numeroEmpregado, nome, endereco, metodoPagamento, isSindicato, tipo, tipoAgenda, diaSemana);
 	}
 	
-
 	private double salarioHoristaLiq = 0;
 	private double salarioHorista = 0;
 	private double salarioHora = 0;

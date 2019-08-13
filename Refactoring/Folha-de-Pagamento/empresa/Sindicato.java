@@ -1,8 +1,8 @@
-package com.empresa;
+package empresa;
 
 import java.util.Scanner;
 
-import com.sistema.TratamentoExc;
+import sistema.TratamentoExc;
 
 public class Sindicato {
 	

@@ -1,9 +1,9 @@
-package com.empresa;
+package empresa;
 
 import java.util.ArrayList;
 
-import com.empregado.Empregado;
-import com.sistema.TratamentoExc;
+import empregado.Empregado;
+import sistema.TratamentoExc;
 
 public class Agenda {
 

@@ -1,8 +1,8 @@
-package com.empregado;
+package empregado;
 
 import java.util.ArrayList;
 
-import com.sistema.TratamentoExc;
+import sistema.TratamentoExc;
 
 public class Comissionado extends Empregado implements Salario {
 	
@@ -12,7 +12,6 @@ public class Comissionado extends Empregado implements Salario {
 	}
 	
 	
-	// Salário
 	private double salarioComissionadoFixo;
 	private double salarioComissionadoLiq;
 	private double valorComissao;
