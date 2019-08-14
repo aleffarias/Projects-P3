@@ -1,7 +1,6 @@
 package sistema;
 
 import java.util.ArrayList;
-
 import empregado.Empregado;
 
 public class BancoDadosSingleton {
@@ -31,7 +30,7 @@ public class BancoDadosSingleton {
 		
 		for (i=0; i < listaEmpregados.size(); i++) {
 			if (listaEmpregados.get(i).getNumeroEmpregado() == nEmpregado) {
-				break;
+				break;	
 			}
 		}
 		
@@ -46,8 +45,14 @@ public class BancoDadosSingleton {
 		if (index == -1) return;
 		
 		System.out.println("\nRemovendo empregado...");
-		listaEmpregados.remove(index);
-		System.out.println("\nEmpregado removido com sucesso!\n");
+		
+		try {
+			listaEmpregados.remove(index);
+			System.out.println("\nEmpregado removido com sucesso!\n");
+			
+		} catch (IndexOutOfBoundsException e) {
+			System.out.println("\nErro: Empregado não existe.\n");
+		} 
 	}
 	
 	//======================================= Get/Set =================================================
