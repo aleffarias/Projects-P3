@@ -89,7 +89,7 @@ public class AddEmpregado {
 	  		bancoDados.setListaEmpregados(comissionado);
 		  
 	  	} else {
-	  		System.out.println("\nErro: Opção Inválida.\\n");
+	  		System.out.println("\nErro: Opção Inválida.\n");
 	  	}
 
 		System.out.println("\nEmpregado cadastrado com sucesso!\n");

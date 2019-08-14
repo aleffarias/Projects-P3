@@ -32,21 +32,21 @@ public class Menu {
 			break;
 			
 		case 4:
-			folhaPagamento.resultadoVenda();
+			folhaPagamento.venda();
 			break;
 		
 		case 5:
-			
+			folhaPagamento.taxaServico();			
 			break;
 		
 		case 6:	
-			
+			folhaPagamento.editar();
 			break;
 		
 		case 7:
-			
+			folhaPagamento.rodar(dia, diaSemana, semana, ultimo);
 			calendario.avancarDia();
-			
+	
 			System.out.println("\nData: " + dia + "/ " + mes + " / " + ano + " -  Folha de pagamento executada com sucesso!\n");
 			break;
 			
@@ -55,11 +55,11 @@ public class Menu {
 			break;
 		
 		case 9:
-			
+			folhaPagamento.agendaPagamento();
 			break;
 		
 		case 10:
-			
+			folhaPagamento.novaAgenda();
 			break;
 			
 		case 0:

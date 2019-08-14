@@ -2,21 +2,33 @@ package empresa;
 
 import java.util.Scanner;
 
+import sistema.BancoDadosSingleton;
 import sistema.TratamentoExc;
 
 public class Sindicato {
 	
-	Scanner input = new Scanner(System.in);
-	
+	private BancoDadosSingleton bancoDados = BancoDadosSingleton.getInstance();
 	private int numeroSindicato;
 	private double taxaSindical= 0;
 	private double valorTaxaServico = 0; 
 	
+	Scanner input = new Scanner(System.in);
+	
+	public boolean verificaSindicato() {
+		int index = bancoDados.searchEmpregado();
+		if (index == -1) return false;
+		
+		if (bancoDados.getListaEmpregados().get(index).getIsSindicato() == 1) {
+			return true;
+		} else return false;
+	}
+	
 	public void taxaServico() {
+				
 		System.out.print("\nDigite o serviço adicional prestado pelo sindicato:\n");
 		String servicoPrestado = input.nextLine();
 		
-		System.out.println("\nValor da taxa de serviço:\nR$");
+		System.out.println("\nValor da taxa de serviço: R$ ");
 		double valor = TratamentoExc.lerDouble();
 		
 		this.valorTaxaServico = valorTaxaServico + valor;
