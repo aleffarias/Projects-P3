@@ -1,11 +1,12 @@
 package empregado;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import empresa.Sindicato;
 import sistema.TratamentoExc;
 
-public class Empregado {
+public abstract class Empregado {
 	private int numeroEmpregado;
 	private String nome;
 	private String endereco;
@@ -29,6 +30,10 @@ public class Empregado {
 	}
 	
 	Scanner input = new Scanner(System.in);
+	
+	// TEMPLATE METHOD
+	abstract void entradaSalario();
+	abstract void pagarEmpregado(ArrayList<Empregado> empregado, int index);
 
 	public void alterarDetalhes(int opcao) {
 		switch(opcao) {

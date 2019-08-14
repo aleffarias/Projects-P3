@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import sistema.TratamentoExc;
 
-public class Assalariado extends Empregado implements Salario {
+public class Assalariado extends Empregado {
 	
 	public Assalariado(int numeroEmpregado, String nome, String endereco, int metodoPagamento, 
 						int isSindicato, int tipo, String tipoAgenda, int diaSemana) {

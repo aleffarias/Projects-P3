@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import sistema.TratamentoExc;
 
-public class Comissionado extends Empregado implements Salario {
+public class Comissionado extends Empregado {
 	
 	public Comissionado(int numeroEmpregado, String nome, String endereco, int metodoPagamento, 
 						int isSindicato, int tipo, String tipoAgenda, int diaSemana) {
@@ -17,6 +17,7 @@ public class Comissionado extends Empregado implements Salario {
 	private double valorComissao;
 	private double comissao;
 	
+	// TEMPLATE METHOD
 	@Override
 	public void entradaSalario() {
 		System.out.print("\nInforme o salário:\nExemplo: 1500 - 3000,56\nR$ ");

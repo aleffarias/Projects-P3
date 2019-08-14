@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import sistema.TratamentoExc;
 
-public class Horista extends Empregado implements Salario {
+public class Horista extends Empregado {
 	
 	public Horista(int numeroEmpregado, String nome, String endereco, int metodoPagamento, 
 					int isSindicato, int tipo, String tipoAgenda, int diaSemana) {
@@ -15,6 +15,7 @@ public class Horista extends Empregado implements Salario {
 	private double salarioHorista = 0;
 	private double salarioHora = 0;
 	
+	// TEMPLATE METHOD
 	@Override
 	public void entradaSalario() {
 		System.out.print("\nInforme o salário por hora trabalhada:\nExemplo: 1,5 - 3\nR$ ");
