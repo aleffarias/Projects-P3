@@ -32,10 +32,21 @@ public abstract class Empregado {
 	Scanner input = new Scanner(System.in);
 	
 	// TEMPLATE METHOD
-	abstract void entradaSalario();
-	abstract void pagarEmpregado(ArrayList<Empregado> empregado, int index);
+	public abstract void entradaSalario();
+	public abstract void pagarEmpregado(ArrayList<Empregado> empregado, int index);
 
-	public void alterarDetalhes(int opcao) {
+	public void alterarDetalhes() {
+		
+		System.out.println("\n**  	ALTERAR DETALHES DO EMPREGADO  	**\n");
+		System.out.println("Escolha uma opção:");
+		System.out.println("(1) - Alterar Nome");
+		System.out.println("(2) - Alterar Endereço");
+		System.out.println("(3) - Alterar Método de Pagamento");
+		System.out.println("(4) - Alterar Sindicato");
+		System.out.println("(5) - Alterar Tipo");
+		
+		int opcao = TratamentoExc.lerInt();
+		
 		switch(opcao) {
 		case 1:
 			System.out.println("Digite o nome do empregado:");

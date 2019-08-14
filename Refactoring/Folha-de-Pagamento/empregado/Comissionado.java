@@ -40,30 +40,6 @@ public class Comissionado extends Empregado {
 		
 	}
 	
-	public void resultadoVenda() {
-		System.out.println("\nDia da venda:");
-		int diaVenda = TratamentoExc.lerInt();
-		
-		System.out.println("\nMês da venda:");
-		int mesVenda = TratamentoExc.lerInt();
-		
-		System.out.println("\nAno da venda:");
-		int anoVenda = TratamentoExc.lerInt();
-		
-		System.out.print("\nValor da venda:\nExemplo: 1500 - 3000.56\nR$ "); 
-		double valorVenda = TratamentoExc.lerDouble();
-		
-		this.valorComissao =  (valorVenda * comissao)/100;
-		
-		System.out.println("\n===============================Registro de Venda=================================");
-		System.out.println("Nome: " + getNome() + "		Número do empregado: " + getNumeroEmpregado());
-		System.out.println("----------------------------------------------------------------------------------");
-		System.out.println("Data da venda: " + diaVenda + "/ " + mesVenda + "/" + anoVenda + "		Valor da comissão: R$ " + ((valorVenda * comissao)/100));
-		System.out.println("==================================================================================");
-		
-		System.out.println("\nResultado da venda registrado com sucesso!\n");
-	}
-
 	
 	//======================================= Get/Set =================================================
 
@@ -79,6 +55,14 @@ public class Comissionado extends Empregado {
 		return comissao;
 	}
 	
+	public double getValorComissao() {
+		return valorComissao;
+	}
+
+	public void setValorComissao(double valorComissao) {
+		this.valorComissao = valorComissao;
+	}
+
 	@Override
 	public String toString() {
 		String string, diaString = null;

@@ -35,56 +35,30 @@ public class Horista extends Empregado {
 		this.salarioHorista = 0;
 	}
 	
-	public void cartaoPonto() {	
-		
-		System.out.println("\nHorário Entrada:\nDigite sem ':' Exemplo: 0703(07:03) - 1256(12:56)");
-		int cartaoPontoE = TratamentoExc.lerInt();
-		
-		System.out.println("\nHorário Saída:\nDigite sem ':' Exemplo: 0703(07:03) - 1256(12:56)");
-		int cartaoPontoS = TratamentoExc.lerInt();
-		
-		// Calcula o salário
-		this.salarioHorista = salarioHorista + (calculaSalario(salarioHora, cartaoPontoE, cartaoPontoS));
-		
-		System.out.println("\nCartão de Ponto registrado com sucesso!\n");		
-	}
-	
-	// Calcula o salário de acordo com o cartão ponto
-	
-	public static double calculaSalario(double salarioHora, int entrada, int saida) {
-		double salario;
-		
-		int horaTrabalhada = saida - entrada;
-		float minutos = horaTrabalhada % 100;
-		
-		if (horaTrabalhada <= 800) {
-		
-			if (minutos < 10) {
-				minutos = minutos / 10;
-			} else {
-				minutos = minutos / 100;
-			}
-			
-			salario = ((horaTrabalhada / 100) * salarioHora) + (minutos * salarioHora);
-		} else {
-			int horaExtra = horaTrabalhada - 800;
-			
-			if (minutos < 10) {
-				minutos = minutos / 10;
-			} else {
-				minutos = minutos / 100;
-			}
-			
-			salario = (8 * salarioHora + ((horaExtra / 100) * (salarioHora * 1.5)) + (minutos * (horaExtra * 1.5)));
-			
-		}
-		
-		return salario;
-	}
 	
 	//======================================= Get/Set =================================================
 
 	
+	public double getSalarioHoristaLiq() {
+		return salarioHoristaLiq;
+	}
+
+	public void setSalarioHoristaLiq(double salarioHoristaLiq) {
+		this.salarioHoristaLiq = salarioHoristaLiq;
+	}
+
+	public double getSalarioHora() {
+		return salarioHora;
+	}
+
+	public void setSalarioHora(double salarioHora) {
+		this.salarioHora = salarioHora;
+	}
+
+	public void setSalarioHorista(double salarioHorista) {
+		this.salarioHorista = salarioHorista;
+	}
+
 	public double getSalarioHorista() {
 		return salarioHorista;
 	}
