@@ -3,29 +3,15 @@ package empresa;
 import java.util.ArrayList;
 
 import empregado.Empregado;
+import sistema.BancoDadosSingleton;
 import sistema.TratamentoExc;
 
 public class Agenda {
-
-	public int searchEmpregado(ArrayList<Empregado> listaEmpregados, int nEmpregado){
-		int i;
-		
-		if (listaEmpregados.isEmpty()) {
-			System.out.println("\nErro: Não há empregados cadastrados.\n");
-			return -1;
-		}
-		
-		for (i=0; i < listaEmpregados.size(); i++) {
-			if (listaEmpregados.get(i).getNumeroEmpregado() == nEmpregado) {
-				break;
-			}
-		}
-		
-		return i;
-	}
 	
+	private BancoDadosSingleton bancoDados = BancoDadosSingleton.getInstance();
+	private ArrayList<Empregado> listaEmpregados = bancoDados.getListaEmpregados();
 	
-	public void consultaAgenda(ArrayList<Empregado> listaEmpregados) {
+	public void consultaAgenda() {
 		if (listaEmpregados.isEmpty()) {
 			System.out.println("\nErro: Não há empregados cadastrados.\n");
 			return;
@@ -36,7 +22,10 @@ public class Agenda {
 		}
 	}
 	
-	public void novaAgenda(ArrayList<Empregado> listaEmpregados, int index) {
+	public void novaAgenda() {
+		
+		int index = bancoDados.searchEmpregado();
+		
 		String agenda = null;
 	
 		System.out.println("\nEscolha uma opção:\n(1) - Mensal\n(2) - Semanal");
