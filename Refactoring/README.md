@@ -9,8 +9,13 @@ Finalizado...
 
 2. Singleton
 > Garantir que uma classe só tenha uma única instância, e prover um ponto de acesso global a ela.
-  - Classe: **BancoDadosSingleton**, **CalendarioSingleton**
-  
+  - Classes: **BancoDadosSingleton**, **CalendarioSingleton**
+
+3. Template Method
+> Definir o esqueleto de um algoritmo dentro de uma operação, deixando alguns passos a serem preenchidos
+pelas subclasses. Template Method permite que suas subclasses redefinam certos passos de um algoritmo sem
+mudar sua estrutura.
+  - Classes: **Empregado** -> **Assalariado**, **Comissionado**, **Horista**
   
 Projeto OO original sem refatoração: https://github.com/aleffarias/Projects-P3/tree/master/ProjetoOO 
 
