@@ -18,8 +18,11 @@ public class BancoDadosSingleton {
 		return uniqueInstance;
 	}
 	
-	public int searchEmpregado(int nEmpregado){
+	public int searchEmpregado(){
 		int i;
+		
+		System.out.println("Digite o número do Empregado:");
+		int nEmpregado = TratamentoExc.lerInt();
 		
 		if (listaEmpregados.isEmpty()) {
 			System.out.println("\nErro: Não há empregados cadastrados.\n");
@@ -35,13 +38,11 @@ public class BancoDadosSingleton {
 		return i;
 	}
 	
+	
 	public void removeEmpregado() {
 		System.out.println("\n\t**  	REMOVER FUNCIONÁRIO  	**\n");
-		  
-		System.out.println("Digite o número do Empregado:");
-		int nEmpTemp = TratamentoExc.lerInt();
 		
-		int index = searchEmpregado(nEmpTemp);
+		int index = searchEmpregado();
 		if (index == -1) return;
 		
 		System.out.println("\nRemovendo empregado...");
