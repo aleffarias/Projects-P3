@@ -1,7 +1,7 @@
 # Folha de Pagamento Refatorado
 
 ## Padrões
-1. Facade Finalizado...
+1. Facade
 > Oferecer uma interface única para um conjunto de interfaces de um subsistema. Facade define uma interface de nível mais elevado que torna o subsistema mais fácil de usar.
   - Classe: **FolhaPagamentoFacade**
 
