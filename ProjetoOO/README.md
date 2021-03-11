@@ -1,7 +1,7 @@
 # Folha de Pagamento
 Projeto OO referente a disciplina Projeto de Software (P3). 
 
-Repositório original com todos os commits: https://github.com/aleffarias/Folha-de-Pagamento
+[Repositório](https://github.com/aleffarias/Folha-de-Pagamento) original com todos os commits
 
 >"O objetivo do projeto é construir um sistema de folha de pagamento. O sistema consiste de um
 banco de dados de empregados de uma empresa além dos seus dados associados tais como cartões
